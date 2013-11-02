@@ -1,0 +1,27 @@
+{
+  "main": "index.html",
+  "name": "Switcher",
+  "author": "witcher42",
+  "description": "Host switcher based on node-webkit.",
+  "version": "1.0.0",
+  "keywords": [
+    "Host Switcher",
+    "node-webkit"
+  ],
+  "window": {
+    "icon": "img/mark.png",
+    "toolbar": false,
+    "width": 1024,
+    "height": 800,
+    "position": "mouse",
+    "min_width": 600,
+    "min_height": 600
+  },
+  "webkit": {
+    "plugin": true
+  },
+  "dependencies": {
+    "seajs": "~2.1.1",
+    "marked": "~0.2.9"
+  }
+}
