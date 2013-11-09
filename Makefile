@@ -17,4 +17,4 @@ install:
 	@cp -R build/${NAME}.app /Applications/
 
 clean:
-	@rm -rf build 
+	@rm -rf build
