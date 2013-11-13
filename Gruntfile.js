@@ -29,6 +29,24 @@ module.exports = function(grunt) {
       all: [
         'src/**/*.js'
       ]
+    },
+
+    less: {
+        main: {
+            options: {
+                paths: ["src/less"]
+            },
+            files: {
+                "src/css/style.css": "src/less/style.less"
+            }
+        }
+    },
+
+    watch: {
+      main: {
+        files: ["src/less/**"],
+        tasks: ["less:main"]
+      }
     }
 
     //copy: {
@@ -43,11 +61,15 @@ module.exports = function(grunt) {
     //    ]
     //  }
     //}
+
+
   });
 
   //grunt.loadNpmTasks('grunt-jslint');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('build', ['jshint']);
+  //grunt.registerTask('build', ['jshint']);
 };
