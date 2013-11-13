@@ -1,0 +1,67 @@
+body,
+html,
+.wrap,
+.switcher-list,
+.switcher-content {
+  height: 100%;
+}
+
+.switcher-list {
+
+  @functionHeight: 70px;
+
+  float: left;
+  width: 202px;
+  position: relative;
+  min-height: 1px;
+  border-left: 1px solid #dfe4ea;
+  border-right: 1px solid #dfe4ea;
+  background-color: #fff6e5;
+
+  .switcher-list-items {
+    height: ~"-webkit-calc(100% - 70px)";
+  }
+
+  .functions {
+
+    @iconColor: #2185C5;
+
+    height: @functionHeight;
+    position: relative;
+    bottom: 0;
+    border-top: 1px solid #cccccc;
+
+    li {
+      float: left;
+      height: 100%;
+      display: inline-block;
+      width: 25%;
+      background-color: @iconColor;
+
+      &:hover {
+        background-color: #FF7F66;
+      }
+    }
+
+    .add {
+
+      border-right: 1px #cccccc solid;
+
+      i {
+        height: 30px;
+        width: 30px;
+        margin-top: 23px;
+        margin-left: 13px;
+        display: inline-block;
+        background-image: url(../img/icons.png);
+        background-position: -85px 0;
+      }
+    }
+  }
+}
+
+.switcher-content {
+  float: left;
+  position: relative;
+  width: 600px;
+}
