@@ -8,26 +8,31 @@
 </head>
 <body>
 
-  <div class="container wrap">
+  <div class="wrap">
     <div class="switcher-list">
-      <ul class="nav nav-pills nav-stacked switcher-list-items">
-        <li><a href="">Item</a></li>
-        <li><a href="">Item</a></li>
-        <li><a href="">Item</a></li>
+      <ul class="nav nav-stacked switcher-list-items">
+        <li><a href="" id="js-list-hosts">Hosts</a></li>
+        <li><a href="">Common</a></li>
+        <li class="active"><a href="" data-toggle="tab">QA</a></li>
+        <li><a href="" data-toggle="tab">Dev</a></li>
+        <li><a href="" data-toggle="tab">Online</a></li>
       </ul>
       <ul class="nav functions">
-        <li class="add"><i></i></li>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
-        <li><a href=""></a></li>
+        <li><span class="glyphicon glyphicon-plus"></span></li>
+        <li><span class="glyphicon glyphicon-minus"></span></li>
+        <li><span class="glyphicon glyphicon-refresh"></span></li>
+        <li><span class="glyphicon glyphicon-th-list"></span></li>
       </ul>
     </div>
-    <div class="switcher-content"> content </div>
+    <div class="switcher-content">
+      <pre id="js-content" ></pre>
+    </div>
   </div>
 
-  <script src="./js/main.js"></script>
   <script src="./lib/jquery/jquery-2.0.3.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.js"></script>
+
+  <script src="./js/main.js"></script>
 
 </body>
 </html>
