@@ -5,6 +5,10 @@ html,
 .switcher-content {
   height: 100%;
 }
+.wrap {
+  border: 1px solid #cccccc;
+  padding: 0;
+}
 .switcher-list {
   float: left;
   width: 202px;
