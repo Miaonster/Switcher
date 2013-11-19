@@ -45,6 +45,21 @@ html,
         font-weight: 300;
       }
 
+      .status {
+        display: none;
+      }
+
+      &.using {
+        .status {
+          display: inline;
+          color: #2185C5;
+        }
+        //a {
+          //font-weight: 700;
+          //color: #FF7F66;
+        //}
+      }
+
       &.active {
         > a {
           color: #FF7F66;

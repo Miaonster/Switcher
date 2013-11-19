@@ -60,6 +60,13 @@ html,
   color: #716b7a;
   font-weight: 300;
 }
+.switcher-list .switcher-list-items > li .status {
+  display: none;
+}
+.switcher-list .switcher-list-items > li.using .status {
+  display: inline;
+  color: #2185C5;
+}
 .switcher-list .switcher-list-items > li.active > a {
   color: #FF7F66;
   font-weight: 700;
