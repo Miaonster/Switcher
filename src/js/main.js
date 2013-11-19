@@ -4,16 +4,31 @@ var filepath = '/Users/witcher42/tmp/hosts',
     options = { encoding: 'utf8' },
     hosts = null,
     list = null,
+    $doc,
     $content;
 
-hosts = fs.readFileSync(filepath, options);
+// 替换模版
+function render(template, textHashArr) {
+  var i, result = '', textHash;
 
-$('#js-list-hosts').on('click', function(e) {
-});
+  function replaceFunc($0, $1) {
+    return textHash[$1] || '';
+  }
+
+  if (!Array.isArray(textHashArr)) {
+    textHashArr = [ textHashArr ];
+  }
+  for (i=0; i<textHashArr.length; i++) {
+    textHash = textHashArr[i];
+    result += template.replace(/{{(.*?)}}/g, replaceFunc);
+  }
+  return result;
+};
+
+$doc = $(document);
 
 $content = $('#js-content');
-
-$content.text(hosts);
+$content.text(fs.readFileSync(filepath, options));
 
 hosts = [
   {
@@ -25,14 +40,16 @@ hosts = [
   {
     name: 'QA',
     host: '',
+    using: true,
     active: true,
-    toggle: true
+    custom: true
   },
   {
     name: 'Dev',
     host: '',
+    using: false,
     active: false,
-    toggle: true
+    custom: true
   },
 ];
 
@@ -43,24 +60,47 @@ try {
 }
 
 var $item,
-    $template;
+    html = $('#tpl-list').html();
 
 hosts.forEach(function(element, index) {
 
-  $template = $($('#tpl-list').html());
+  var template,
+      hashArr,
+      $host;
+
+  hashArr = {
+    hostname: element.name
+  };
+
+  template = render(html, hashArr);
+
+  $host = $(template);
 
   if (element.active) {
-    $template.addClass('active');
+    $host.addClass('active');
   }
 
-  if (element.toggle) {
-    $template.attr('data-toggle', 'tab');
+  if (element.custom) {
+    $host.addClass('js-custom');
   }
 
-  $template.find('a')
-      .data('hosts', element.host)
-      .text(element.name);
+  if (element.using) {
+    $host.addClass('using');
+  }
 
-  $template.insertBefore('#tpl-list');
+  $host.data('hosts', element.host);
 
+  $host.insertBefore('#tpl-list');
+
+});
+
+$doc.on('click', '#js-list a', function(e) {
+  e.preventDefault();
+  $(this).tab('show');
+});
+
+$doc.on('dblclick', '.js-custom a', function(e) {
+  e.preventDefault();
+  $('.using').removeClass('using');
+  $(this).parent().addClass('using');
 });
