@@ -1,5 +1,7 @@
 var fs = require('fs');
 
+require('./js/rename.js').init(jQuery);
+
 var filepath = '/Users/witcher42/tmp/hosts',
     options = { encoding: 'utf8' },
     hosts = null,
@@ -53,11 +55,7 @@ hosts = [
   },
 ];
 
-try {
-  hosts = JSON.parse(localStorage.getItem('hosts')) || hosts;
-} catch(e) {
-
-}
+hosts = getHosts() || hosts;
 
 var $item,
     html = $('#tpl-list').html();
@@ -104,3 +102,84 @@ $doc.on('dblclick', '.js-custom a', function(e) {
   $('.using').removeClass('using');
   $(this).parent().addClass('using');
 });
+
+$doc.on('click', '.js-add', function(e) {
+  addHost();
+});
+
+function addHost() {
+  var template,
+      hashArr,
+      element,
+      $host;
+
+  element = {
+    name: 'New One',
+    host: '',
+    using: false,
+    active: false,
+    custom: true
+  }
+
+  hosts.push(element);
+
+  setHosts(hosts);
+
+  hashArr = {
+    hostname: element.name
+  };
+
+  template = render(html, hashArr);
+
+  $host = $(template);
+
+  if (element.active) {
+    $host.addClass('active');
+  }
+
+  if (element.custom) {
+    $host.addClass('js-custom');
+  }
+
+  if (element.using) {
+    $host.addClass('using');
+  }
+
+  $host.data('hosts', element.host);
+
+  $host.insertBefore('#tpl-list');
+
+  $host.children('a').rename({
+    stop: function() {
+      changeHost(hosts.length - 1, 'name', this.text());
+    }
+  });
+}
+
+function changeHost(index, key, value) {
+  var host = hosts[index];
+
+  if (!host) {
+    return false;
+  }
+
+  host[key] = value;
+
+  setHosts(hosts);
+}
+
+function setHosts(hosts) {
+  try {
+    localStorage.setItem('hosts', JSON.stringify(hosts));
+  } catch(e) {
+    // Do nothing
+  }
+}
+
+function getHosts() {
+  try {
+    return JSON.parse(localStorage.getItem('hosts'));
+  } catch(e) {
+    return null;
+  }
+}
