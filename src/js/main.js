@@ -1,4 +1,5 @@
-var fs = require('fs');
+var fs = require('fs'),
+    hosts = require('./js/hosts.js');
 
 require('./js/rename.js').init(jQuery);
 
@@ -32,65 +33,162 @@ $doc = $(document);
 $content = $('#js-content');
 $content.text(fs.readFileSync(filepath, options));
 
-hosts = [
-  {
-    name: 'Common',
-    host: '',
-    active: false,
-    toggle: false
-  },
-  {
-    name: 'QA',
-    host: '',
-    using: true,
-    active: true,
-    custom: true
-  },
-  {
-    name: 'Dev',
-    host: '',
-    using: false,
-    active: false,
-    custom: true
-  },
-];
-
-hosts = getHosts() || hosts;
-
 var $item,
+    hosts,
     html = $('#tpl-list').html();
 
-hosts.forEach(function(element, index) {
+hosts = {
 
-  var template,
-      hashArr,
-      $host;
+  hosts: [],
 
-  hashArr = {
-    hostname: element.name
-  };
+  defaultHosts: [
+    {
+      name: 'Common',
+      host: '',
+      active: false,
+      toggle: false
+    },
+    {
+      name: 'QA',
+      host: '',
+      using: true,
+      active: true,
+      custom: true
+    },
+    {
+      name: 'Dev',
+      host: '',
+      using: false,
+      active: false,
+      custom: true
+    },
+  ],
 
-  template = render(html, hashArr);
+  init: function() {
+    this.hosts = this.get() || this.defaultHosts.slice(0);
+    this.show();
+  },
 
-  $host = $(template);
+  show: function() {
 
-  if (element.active) {
-    $host.addClass('active');
+    this.hosts.forEach(function(element, index) {
+
+      var template,
+          hashArr,
+          $host;
+
+      hashArr = {
+        hostname: element.name
+      };
+
+      template = render(html, hashArr);
+
+      $host = $(template);
+
+      if (element.active) {
+        $host.addClass('active');
+      }
+
+      if (element.custom) {
+        $host.addClass('js-custom');
+      }
+
+      if (element.using) {
+        $host.addClass('using');
+      }
+
+      $host.data('hosts', element.host);
+
+      $host.insertBefore('#tpl-list');
+
+    });
+
+  },
+
+  set: function() {
+    try {
+      localStorage.setItem('hosts', JSON.stringify(this.hosts));
+    } catch(e) {
+      // Do nothing
+    }
+  },
+
+  get: function() {
+    try {
+      return JSON.parse(localStorage.getItem('hosts'));
+    } catch(e) {
+      return null;
+    }
+  },
+
+  change: function(index, key, value) {
+    var host = this.hosts[index];
+
+    if (!host) {
+      return false;
+    }
+
+    host[key] = value;
+
+    this.set();
+  },
+
+  del: function(index) {
+    this.hosts.splice(index, 1);
+    this.set();
+  },
+
+  add: function() {
+    var template,
+        hashArr,
+        element,
+        $host;
+
+    element = {
+      name: 'New One',
+      host: '',
+      using: false,
+      active: false,
+      custom: true
+    }
+
+    this.hosts.push(element);
+
+    this.set();
+
+    hashArr = {
+      hostname: element.name
+    };
+
+    template = render(html, hashArr);
+
+    $host = $(template);
+
+    if (element.active) {
+      $host.addClass('active');
+    }
+
+    if (element.custom) {
+      $host.addClass('js-custom');
+    }
+
+    if (element.using) {
+      $host.addClass('using');
+    }
+
+    $host.data('hosts', element.host);
+
+    $host.insertBefore('#tpl-list');
+
+    $host.children('a').rename({
+      stop: function() {
+        this.change(this.hosts.length - 1, 'name', this.text());
+      }
+    });
+
   }
 
-  if (element.custom) {
-    $host.addClass('js-custom');
-  }
-
-  if (element.using) {
-    $host.addClass('using');
-  }
-
-  $host.data('hosts', element.host);
-
-  $host.insertBefore('#tpl-list');
-
-});
+};
 
 $doc.on('click', '#js-list a', function(e) {
   e.preventDefault();
@@ -104,82 +202,11 @@ $doc.on('dblclick', '.js-custom a', function(e) {
 });
 
 $doc.on('click', '.js-add', function(e) {
-  addHost();
+  hosts.add();
 });
 
-function addHost() {
-  var template,
-      hashArr,
-      element,
-      $host;
+$doc.on('click', '.js-del', function(e) {
+  hosts.del($('.active').prevAll('li:not(#js-list-hosts)').length);
+});
 
-  element = {
-    name: 'New One',
-    host: '',
-    using: false,
-    active: false,
-    custom: true
-  }
-
-  hosts.push(element);
-
-  setHosts(hosts);
-
-  hashArr = {
-    hostname: element.name
-  };
-
-  template = render(html, hashArr);
-
-  $host = $(template);
-
-  if (element.active) {
-    $host.addClass('active');
-  }
-
-  if (element.custom) {
-    $host.addClass('js-custom');
-  }
-
-  if (element.using) {
-    $host.addClass('using');
-  }
-
-  $host.data('hosts', element.host);
-
-  $host.insertBefore('#tpl-list');
-
-  $host.children('a').rename({
-    stop: function() {
-      changeHost(hosts.length - 1, 'name', this.text());
-    }
-  });
-}
-
-function changeHost(index, key, value) {
-  var host = hosts[index];
-
-  if (!host) {
-    return false;
-  }
-
-  host[key] = value;
-
-  setHosts(hosts);
-}
-
-function setHosts(hosts) {
-  try {
-    localStorage.setItem('hosts', JSON.stringify(hosts));
-  } catch(e) {
-    // Do nothing
-  }
-}
-
-function getHosts() {
-  try {
-    return JSON.parse(localStorage.getItem('hosts'));
-  } catch(e) {
-    return null;
-  }
-}
+hosts.init();
