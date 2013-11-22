@@ -214,7 +214,12 @@ $doc.on('click', '.js-add', function(e) {
 });
 
 $doc.on('click', '.js-del', function(e) {
-  hosts.del($('.active').prevAll('li:not(#js-list-hosts)').length);
+  var $item = $('.active'),
+      index = $item.prevAll('li:not(#js-list-hosts)').length;
+  $item.prev().addClass('active');
+  $item.remove();
+  hosts.del(index);
+  hosts.active(index - 1);
 });
 
 hosts.init();
