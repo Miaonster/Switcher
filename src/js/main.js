@@ -182,7 +182,7 @@ hosts = {
 
     $host.children('a').rename({
       stop: function() {
-        this.change(this.hosts.length - 1, 'name', this.text());
+        this.change(hosts.hosts.length - 1, 'name', this.text());
       }
     });
 
