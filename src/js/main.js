@@ -66,10 +66,10 @@ hosts = {
 
   init: function() {
     this.hosts = this.get() || this.defaultHosts.slice(0);
-    this.show();
+    this.refresh();
   },
 
-  show: function() {
+  refresh: function() {
 
     this.hosts.forEach(function(element, index) {
 
