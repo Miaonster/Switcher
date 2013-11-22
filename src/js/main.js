@@ -105,6 +105,12 @@ hosts = {
 
   },
 
+  show: function(index) {
+    var host = this.hosts[index],
+        text = host.name + "\n" + host.host;
+    $('#js-content').text(text);
+  },
+
   set: function() {
     try {
       localStorage.setItem('hosts', JSON.stringify(this.hosts));
@@ -191,8 +197,10 @@ hosts = {
 };
 
 $doc.on('click', '#js-list a', function(e) {
+  var index = $(this).parent().prevAll('li:not(#js-list-hosts)').length;
   e.preventDefault();
   $(this).tab('show');
+  hosts.show(index);
 });
 
 $doc.on('dblclick', '.js-custom a', function(e) {
