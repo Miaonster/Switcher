@@ -4,7 +4,6 @@ var fs = require('fs'),
 require('./js/rename.js').init(jQuery);
 
 var filepath = '/Users/witcher42/tmp/hosts',
-    options = { encoding: 'utf8' },
     hosts = null,
     list = null,
     $doc,
@@ -30,12 +29,25 @@ function render(template, textHashArr) {
 
 $doc = $(document);
 
-$content = $('#js-content');
-$content.text(fs.readFileSync(filepath, options));
-
 var $item,
     hosts,
+    source,
     html = $('#tpl-list').html();
+
+source = {
+
+  path: '/Users/witcher42/tmp/hosts',
+  options: { encoding: 'utf8' },
+
+  read: function() {
+    return fs.readFileSync(this.path, this.options);
+  },
+
+  write: function(str) {
+    fs.writeFileSync(this.path, str, this.options);
+  }
+
+};
 
 hosts = {
 
@@ -223,3 +235,6 @@ $doc.on('click', '.js-del', function(e) {
 });
 
 hosts.init();
+
+$content = $('#js-content');
+$content.text(source.read());
