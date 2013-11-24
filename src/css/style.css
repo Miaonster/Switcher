@@ -63,11 +63,11 @@ html,
 .switcher-list .switcher-list-items > li .status {
   display: none;
 }
-.switcher-list .switcher-list-items > li.using .status {
+.switcher-list .switcher-list-items > li.active .status {
   display: inline;
-  color: #2185C5;
+  color: #716b7a;
 }
-.switcher-list .switcher-list-items > li.active > a {
+.switcher-list .switcher-list-items > li.using > a {
   color: #FF7F66;
   font-weight: 700;
   background-color: inherit;
