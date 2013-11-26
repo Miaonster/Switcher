@@ -36,50 +36,51 @@ html,
   .switcher-list-items {
     height: ~"-webkit-calc(100% - @{functionHeight})";
 
-    > li {
-
-      font-family: 'open sans';
-
+    > li.using {
       > a {
-        color: #716b7a;
-        font-weight: 300;
-
+        color: #ff7f66;
+        font-weight: 700;
+        background-color: inherit;
         &:hover {
-            background-color: white;
+          background-color: #eeeeee;
         }
       }
+    }
 
-      .status {
-        display: none;
-      }
+    > li.divider {
+      height: 1px;
+      margin: 0;
+      overflow: hidden;
+      background-color: #e5e5e5;
+    }
+
+    > li {
+      margin-top: 0;
+      font-family: 'open sans';
 
       &.active {
-
         border-right: 0;
-        box-shadow: 0px 1px 1px #dfe4ea, 0px -1px 1px #dfe4ea;
+        box-shadow: 0px 1px #dfe4ea, 0px -1px #dfe4ea;
         background: white;
         margin-right: -1px;
-
         .status {
           display: inline;
           color: #dfe4ea;
         }
 
-      }
-
-      &.using {
-        > a {
-          color: #FF7F66;
-          font-weight: 700;
-          background-color: inherit;
+        > a:hover {
+          background-color: white;
         }
       }
 
-      &.divider {
-        height: 1px;
-        margin: 0;
-        overflow: hidden;
-        background-color: #e5e5e5;
+      > a {
+        color: #716b7a;
+        font-weight: 300;
+        cursor: default;
+      }
+
+      .status {
+        display: none;
       }
     }
   }
@@ -129,6 +130,7 @@ html,
   width: ~"-webkit-calc(100% - @{listWidth})";
 
   pre {
+    color: #716b7a;
     height: 100%;
     word-break: break-all;
     word-wrap: break-word;

@@ -208,11 +208,11 @@ hosts = {
 
 };
 
-$doc.on('click', '#js-list a', function(e) {
+$doc.on('mousedown', '#js-list a', function(e) {
   var index = $(this).parent().prevAll('li:not(#js-list-hosts)').length;
-  e.preventDefault();
   $(this).tab('show');
   hosts.show(index);
+  e.preventDefault();
 });
 
 $doc.on('dblclick', '.js-custom a', function(e) {
