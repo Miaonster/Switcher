@@ -43,7 +43,7 @@ source = {
     return fs.readFileSync(this.path, this.options);
   },
 
-  write: function(str) {
+  save: function(str) {
     fs.writeFileSync(this.path, str, this.options);
   }
 
@@ -204,6 +204,15 @@ hosts = {
       }
     });
 
+  },
+
+  active: function(index) {
+    this.activeHosts = this.hosts[0].host + this.hosts[index].host;
+    this.save();
+  },
+
+  save: function() {
+    source.save(this.activeHosts);
   }
 
 };
@@ -216,9 +225,16 @@ $doc.on('mousedown', '#js-list a', function(e) {
 });
 
 $doc.on('dblclick', '.js-custom a', function(e) {
+  var $this = $(this),
+      $using = $('.using'),
+      index;
+
   e.preventDefault();
-  $('.using').removeClass('using');
-  $(this).parent().addClass('using');
+  $using.removeClass('using');
+  $this.parent().addClass('using');
+
+  index = $this.parent().prevAll('li').length - 1;
+  hosts.active(index);
 });
 
 $doc.on('click', '.js-add', function(e) {
