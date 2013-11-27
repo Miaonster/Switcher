@@ -22,6 +22,7 @@
   },
   "dependencies": {
     "seajs": "~2.1.1",
-    "marked": "~0.2.9"
+    "marked": "~0.2.9",
+    "sprintf": "~0.1.3"
   }
 }

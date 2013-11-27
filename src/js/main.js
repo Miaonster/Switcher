@@ -34,20 +34,7 @@ var $item,
     source,
     html = $('#tpl-list').html();
 
-source = {
-
-  path: '/Users/witcher42/tmp/hosts',
-  options: { encoding: 'utf8' },
-
-  read: function() {
-    return fs.readFileSync(this.path, this.options);
-  },
-
-  save: function(str) {
-    fs.writeFileSync(this.path, str, this.options);
-  }
-
-};
+source = require('./js/source');
 
 hosts = {
 
@@ -206,13 +193,27 @@ hosts = {
 
   },
 
+  onSaveDone: function() {
+  },
+
+  onSaveFail: function(code) {
+  },
+
   active: function(index) {
     this.activeHosts = this.hosts[0].host + this.hosts[index].host;
     this.save();
   },
 
   save: function() {
-    source.save(this.activeHosts);
+    if (!this.password) {
+      return $('#password-modal').modal('show');
+    }
+    source.save({
+      text: this.activeHosts,
+      password: this.password,
+      done: this.onSaveDone,
+      fail: this.onSaveFail,
+    });
   }
 
 };
