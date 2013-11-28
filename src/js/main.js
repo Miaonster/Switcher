@@ -106,8 +106,8 @@ hosts = {
 
   show: function(index) {
     var host = this.hosts[index],
-        text = host.name + "\n" + host.host;
-    $('#js-content').text(text);
+        text = '#' + host.name + "\n" + host.host;
+    $('#js-content').val(text);
   },
 
   set: function() {
@@ -206,7 +206,7 @@ hosts = {
 
   save: function() {
     if (!this.password) {
-      return $('#password-modal').modal('show');
+      return this.showModal();
     }
     source.save({
       text: this.activeHosts,
@@ -214,8 +214,19 @@ hosts = {
       done: this.onSaveDone,
       fail: this.onSaveFail,
     });
-  }
+  },
 
+  showModal: function() {
+    var _this = this,
+        $modal = $('#password-modal');
+
+    $modal.modal('show');
+    $modal.find('.js-save').one('click', function() {
+      $modal.modal('hide');
+      _this.password = $modal.find('.js-password').val();
+      _this.save();
+    });
+  }
 };
 
 $doc.on('mousedown', '#js-list a', function(e) {
@@ -254,4 +265,6 @@ $doc.on('click', '.js-del', function(e) {
 hosts.init();
 
 $content = $('#js-content');
-$content.text(source.read());
+$content.val(source.read());
+
+var myCodeMirror = CodeMirror.fromTextArea($content.get(0));
