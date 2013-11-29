@@ -129,7 +129,14 @@ html,
   background-position: -85px 0;
 }
 .switcher-content {
+  height: 100%;
+  cursor: text;
   float: left;
   position: relative;
   width: -webkit-calc(100% - 202px);
+}
+.tab-content,
+.switcher-content,
+.CodeMirror {
+  height: 100%;
 }
