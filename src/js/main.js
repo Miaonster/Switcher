@@ -134,7 +134,7 @@ hosts = {
     },
     {
       name: 'Dev',
-      host: '',
+      host: '# this is dev host\n 127.0.0.1 www.haha.com\n',
       using: false,
       active: false,
       custom: true
@@ -147,45 +147,11 @@ hosts = {
   },
 
   refresh: function() {
-
-    this.hosts.forEach(function(element, index) {
-
-      var template,
-          hashArr,
-          $host;
-
-      hashArr = {
-        hostname: element.name
-      };
-
-      template = render(html, hashArr);
-
-      $host = $(template);
-
-      if (element.active) {
-        $host.addClass('active');
-      }
-
-      if (element.custom) {
-        $host.addClass('js-custom');
-      }
-
-      if (element.using) {
-        $host.addClass('using');
-      }
-
-      $host.data('hosts', element.host);
-
-      $host.insertBefore('#tpl-list');
-
-    });
-
+    view.init(this.hosts);
   },
 
   show: function(index) {
-    var host = this.hosts[index],
-        text = '#' + host.name + "\n" + host.host;
-    $('#js-content').val(text);
+    view.show(this.hosts[index]);
   },
 
   set: function() {
@@ -308,10 +274,11 @@ hosts = {
 };
 
 $doc.on('mousedown', '#js-list a', function(e) {
-  var index = $(this).parent().prevAll('li:not(#js-list-hosts)').length;
+  //e.preventDefault();
+  //$(this).tab('show');
+  /*var index = $(this).parent().prevAll('li:not(#js-list-hosts)').length;
   $(this).tab('show');
-  hosts.show(index);
-  e.preventDefault();
+  hosts.show(index);*/
 });
 
 $doc.on('dblclick', '.js-custom a', function(e) {
@@ -344,5 +311,3 @@ hosts.init();
 
 $content = $('#js-content');
 $content.val(source.read());
-
-var myCodeMirror = CodeMirror.fromTextArea($content.get(0));

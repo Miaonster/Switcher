@@ -12,9 +12,9 @@
   <div class="wrap">
     <div class="switcher-list">
       <ul id="js-list" class="nav nav-stacked switcher-list-items">
-        <li id="js-list-hosts"><a>Hosts</a></li>
-        <template id="tpl-list" style="display: none;">
-          <li><a>{{hostname}}<span class="status glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+        <li id="js-list-hosts"><a data-toggle="tab" href="js-content-hosts">Hosts</a></li>
+        <template id="js-tpl-list" style="display: none;">
+          <li><a data-toggle="tab" href="#js-content-{{contentname}}">{{hostname}}<span class="status glyphicon glyphicon-chevron-right pull-right"></span></a></li>
         </template>
       </ul>
       <ul class="nav functions">
@@ -24,8 +24,15 @@
         <li><span class="js-setting glyphicon glyphicon-th-list"></span></li>
       </ul>
     </div>
-    <div class="switcher-content">
-      <textarea id="js-content" ></textarea>
+    <div class="tab-content">
+      <div id="js-content-hosts" class="switcher-content tab-pane active">
+        <textarea id="js-content" ></textarea>
+      </div>
+      <template id="js-tpl-content" style="display:none">
+          <div id="js-content-{{hostname}}" class="switcher-content tab-pane">
+            <textarea></textarea>
+          </div>
+      </template>
     </div>
   </div>
 
@@ -51,6 +58,8 @@
   <script src="./lib/jquery/jquery-2.0.3.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.js"></script>
   <script src="./lib/codemirror/lib/codemirror.js"></script>
+  <script src="./lib/codemirror/mode/shell/shell.js"></script>
+  <script src="./lib/mousetrap/mousetrap.js"></script>
 
   <script src="./js/main.js"></script>
 
