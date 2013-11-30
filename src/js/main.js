@@ -103,12 +103,12 @@ view = {
     $content.val(element.host);
     $item.insertBefore('#js-tpl-content');
 
-    CodeMirror.fromTextArea($content.get(0), { mode: 'shell' } );
+    CodeMirror.fromTextArea($content.get(0), { mode: 'hosts', theme: 'solarized' } );
   },
 
   mousetrap: function() {
     Mousetrap.bind('command+s', function() {
-      $('.switcher-content.active textarea').
+      $('.switcher-content.active textarea');
     });
   }
 
