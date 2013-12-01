@@ -103,7 +103,7 @@ view = {
     $content.val(element.host);
     $item.insertBefore('#js-tpl-content');
 
-    CodeMirror.fromTextArea($content.get(0), { mode: 'hosts', theme: 'solarized' } );
+    CodeMirror.fromTextArea($content.get(0), { mode: 'hosts' } );
   },
 
   mousetrap: function() {
