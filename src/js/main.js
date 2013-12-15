@@ -311,3 +311,9 @@ hosts.init();
 
 $content = $('#js-content');
 $content.val(source.read());
+
+$('.tab-content .switcher-content').on('keydown', function(e) {
+  if (e.keyCode === 83 && e.ctrlKey) {
+    hosts.save();
+  }
+});
