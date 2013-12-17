@@ -14,7 +14,7 @@
       <ul id="js-list" class="nav nav-stacked switcher-list-items">
         <li id="js-list-hosts"><a data-toggle="tab" href="js-content-hosts">Hosts</a></li>
         <template id="js-tpl-list" style="display: none;">
-          <li><a data-toggle="tab" href="#js-content-{{contentname}}">{{hostname}}<span class="status glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+          <li><a data-toggle="tab" href="#js-content-<%=contentname%>"><%=hostname%><span class="status glyphicon glyphicon-chevron-right pull-right"></span></a></li>
         </template>
       </ul>
       <ul class="nav functions">
@@ -55,6 +55,7 @@
     </div>
   </div>
 
+  <script src="./lib/sea/sea.js"></script>
   <script src="./lib/jquery/jquery-2.0.3.js"></script>
   <script src="./lib/bootstrap/js/bootstrap.js"></script>
   <script src="./lib/codemirror/lib/codemirror.js"></script>
