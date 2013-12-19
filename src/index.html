@@ -13,9 +13,9 @@
     <div class="switcher-list">
       <ul id="js-list" class="nav nav-stacked switcher-list-items">
         <li id="js-list-hosts"><a data-toggle="tab" href="js-content-hosts">Hosts</a></li>
-        <template id="js-tpl-list" style="display: none;">
+        <script type="text/template" id="js-tpl-list" style="display: none;">
           <li><a data-toggle="tab" href="#js-content-<%=contentname%>"><%=hostname%><span class="status glyphicon glyphicon-chevron-right pull-right"></span></a></li>
-        </template>
+        </script>
       </ul>
       <ul class="nav functions">
         <li class="js-add"><span class="glyphicon glyphicon-plus"></span></li>
@@ -25,14 +25,14 @@
       </ul>
     </div>
     <div class="tab-content">
-      <div id="js-content-hosts" class="switcher-content tab-pane active">
+      <div id="js-content-hosts" class="switcher-content tab-pane">
         <textarea id="js-content" ></textarea>
       </div>
-      <template id="js-tpl-content" style="display:none">
-          <div id="js-content-{{hostname}}" class="switcher-content tab-pane">
-            <textarea></textarea>
-          </div>
-      </template>
+      <script type="text/template" id="js-tpl-content" style="display:none">
+        <div id="js-content-<%=hostname%>" class="switcher-content tab-pane active">
+          <textarea></textarea>
+        </div>
+      </script>
     </div>
   </div>
 
@@ -61,8 +61,11 @@
   <script src="./lib/codemirror/lib/codemirror.js"></script>
   <script src="./lib/codemirror/mode/hosts/hosts.js"></script>
   <script src="./lib/mousetrap/mousetrap.js"></script>
+  <script src="./lib/mousetrap/mousetrap-global-bind.js"></script>
 
-  <script src="./js/main.js"></script>
+  <script>
+    seajs.use('./js/main.js');
+  </script>
 
 </body>
 </html>
