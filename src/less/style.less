@@ -1,4 +1,7 @@
 @import "font";
+@import "tip";
+
+@lightWhite: #fcfcfc;
 
 body {
   font: 13px Helvetica, arial, freesans, clean, sans-serif;
@@ -10,7 +13,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans", "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
 .modal-footer {
@@ -68,21 +71,30 @@ html,
     }
 
     > li {
+      line-height: 19px;
       margin-top: 0;
       font-family: 'open sans';
+      vertical-align: baseline;
 
       &.active {
         border-right: 0;
         box-shadow: 0px 1px #dfe4ea, 0px -1px #dfe4ea;
         background: white;
         margin-right: -1px;
+        background-color: @lightWhite;
+
         .status {
           display: inline;
           color: #dfe4ea;
         }
 
+        .change {
+          right: 36px !important;
+        }
+
         > a:hover {
           background-color: white;
+          background-color: @lightWhite;
         }
       }
 
@@ -92,8 +104,28 @@ html,
         cursor: default;
       }
 
+      //.change,
       .status {
+        top: 2px;
         display: none;
+      }
+
+      .change {
+        display: none;
+        position: absolute;
+        top: 17px;
+        right: 35px;
+        font-size: 5px;
+        line-height: 5px;
+        color: #716b7a;
+      }
+      .change:before {
+        content: ' ';
+        display: block;
+        height: 5px;
+        width: 5px;
+        border-radius: 50%;
+        background-color: #dfe4ea;
       }
     }
   }
@@ -151,6 +183,27 @@ html,
   height: 100%;
 }
 
-//.CodeMirror-code pre {
-  //font-family: Monaco;
-//}
+.CodeMirror {
+  font-variant: normal;
+  vertical-align: baseline;
+  white-space: pre;
+  padding: 8px;
+  font-size: 13px;;
+  line-height: 15px;
+  background-color: @lightWhite;
+  font-family: 'Source Code Pro', monospace;
+  //font-family: Consolas, Monaco, 'Andale Mono', monospace;;
+  font-weight: 400;
+}
+
+.CodeMirror-code{
+
+  pre {
+    color: rgba(77, 77, 76, 0.85);
+  }
+
+  .cm-comment {
+    color: rgb(113, 140, 0);
+  }
+}
+

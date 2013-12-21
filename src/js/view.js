@@ -1,6 +1,11 @@
 define(function(require) {
 
-  var view = {
+  var view,
+      Tip = require('./tip'),
+      pass = new Tip('.js-pass'),
+      text = new Tip('.js-text');
+
+  view = {
 
     nav: '',
     content: '',
@@ -94,16 +99,25 @@ define(function(require) {
       $item.insertBefore('#js-tpl-content');
 
       element.editor = CodeMirror.fromTextArea($content.get(0), { mode: 'hosts' } );
+      element.editor.on('change', this._onchange);
 
       if (!element.active) {
         $item.removeClass('active');
       }
+    },
 
+    _onchange: function(mirror) {
+      $('.js-custom.active').find('.change').show();
+    },
+
+    _onsave: function() {
+      $('.js-custom.active').find('.change').hide();
     },
 
     mousetrap: function() {
       Mousetrap.bindGlobal('command+s', function() {
         var index = $('.switcher-content.active').prevAll('.switcher-content').length - 1;
+        view._onsave();
         hosts.store(index);
       });
     }

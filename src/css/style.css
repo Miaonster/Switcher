@@ -28,6 +28,106 @@
   font-weight: 800;
   src: url('../font/openSans800.woff'), local('Open Sans Extrabold'), local('OpenSans-Extrabold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v6/EInbV5DfGHOiMmvb1Xr-hqRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
 }
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Source Code Pro ExtraLight'), local('../font/SourceCodePro-ExtraLight'), url(http://themes.googleusercontent.com/static/fonts/sourcecodepro/v3/leqv3v-yTsJNC7nFznSMqS-IiwWNzQT_LXAtr-Ee9Pw.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Source Code Pro Light'), local('SourceCodePro-Light'), url(http://themes.googleusercontent.com/static/fonts/sourcecodepro/v3/leqv3v-yTsJNC7nFznSMqcVNtom4QlEDNJaqqqzqdSs.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Code Pro'), local('../font/SourceCodePro-Regular'), url(http://themes.googleusercontent.com/static/fonts/sourcecodepro/v3/mrl8jkM18OlOQN8JLgasD9Hq-FFgoDNV3GTKpHwuvtI.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Code Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Source Code Pro Bold'), local('../font/SourceCodePro-Bold'), url(http://themes.googleusercontent.com/static/fonts/sourcecodepro/v3/leqv3v-yTsJNC7nFznSMqYqjGYJUyOXcBwUQbRaNH6c.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 200;
+  src: local('Titillium WebThin'), local('../font/TitilliumWeb-Thin'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v1/anMUvcNT0H1YN4FII8wpr-K9kSItTeDn2USN0q77Oh4.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Titillium Web'), local('../font/TitilliumWeb-Regular'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v1/7XUFZ5tgS-tD6QamInJTcZ_o9VAbKgK36i-4snuAuCM.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Titillium WebBold'), local('../font/TitilliumWeb-Bold'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v1/anMUvcNT0H1YN4FII8wpr_5rZpfU3XI-FvUPGDRT0xY.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 200;
+  src: local('Titillium WebThin Italic'), local('../font/TitilliumWeb-ThinItalic'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v1/RZunN20OBmkvrU7sA4GPPvTdIrrWFKtkerHRAIjOAnE.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 400;
+  src: local('Titillium WebItalic'), local('../font/TitilliumWeb-Italic'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v1/r9OmwyQxrgzUAhaLET_KO8-iP4m4uFrmmLLVBqy34EU.woff) format('woff');
+}
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: italic;
+  font-weight: 700;
+  src: local('Titillium WebBold Italic'), local('../font/TitilliumWeb-BoldItalic'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v1/RZunN20OBmkvrU7sA4GPPpe8VrfdPPeK1ViGigzR2tQ.woff) format('woff');
+}
+.info-tip {
+  margin-top: -1px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -200px;
+  line-height: 21px;
+  font-size: 9pt;
+  font-family: 'Titillium Web', Helvetica, Arial, sans-serif;
+  text-align: center;
+  z-index: 100;
+  pointer-events: none;
+}
+.info-tip div {
+  pointer-events: auto;
+  display: inline-block;
+  box-shadow: 0 1px 4px #ccc;
+  padding: 8px 43px 8px 43px;
+  border: 0;
+  border-radius: 0 0 5px 5px;
+  color: #ffffff;
+  background-color: #1c9b47;
+  text-align: left;
+}
+.info-tip.input div input[type=input] {
+  background-color: #1c9b47;
+  border: 0;
+  outline: 0;
+  color: #ffffff;
+}
+.info-tip.input div input[type=button] {
+  color: #ffffff;
+  border: 0;
+  background-color: #1c9b47;
+  padding: 3px 0 3px 18px;
+}
+.info-tip.input div input[type=button]:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
 body {
   font: 13px Helvetica, arial, freesans, clean, sans-serif;
 }
@@ -37,7 +137,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Open Sans", "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif !important;
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 .modal-footer {
   margin-top: 0;
@@ -79,21 +179,28 @@ html,
   background-color: #e5e5e5;
 }
 .switcher-list .switcher-list-items > li {
+  line-height: 19px;
   margin-top: 0;
   font-family: 'open sans';
+  vertical-align: baseline;
 }
 .switcher-list .switcher-list-items > li.active {
   border-right: 0;
   box-shadow: 0px 1px #dfe4ea, 0px -1px #dfe4ea;
   background: white;
   margin-right: -1px;
+  background-color: #fcfcfc;
 }
 .switcher-list .switcher-list-items > li.active .status {
   display: inline;
   color: #dfe4ea;
 }
+.switcher-list .switcher-list-items > li.active .change {
+  right: 36px !important;
+}
 .switcher-list .switcher-list-items > li.active > a:hover {
   background-color: white;
+  background-color: #fcfcfc;
 }
 .switcher-list .switcher-list-items > li > a {
   color: #716b7a;
@@ -101,7 +208,25 @@ html,
   cursor: default;
 }
 .switcher-list .switcher-list-items > li .status {
+  top: 2px;
   display: none;
+}
+.switcher-list .switcher-list-items > li .change {
+  display: none;
+  position: absolute;
+  top: 17px;
+  right: 35px;
+  font-size: 5px;
+  line-height: 5px;
+  color: #716b7a;
+}
+.switcher-list .switcher-list-items > li .change:before {
+  content: ' ';
+  display: block;
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: #dfe4ea;
 }
 .switcher-list .functions {
   height: 30px;
@@ -139,4 +264,21 @@ html,
 .switcher-content,
 .CodeMirror {
   height: 100%;
+}
+.CodeMirror {
+  font-variant: normal;
+  vertical-align: baseline;
+  white-space: pre;
+  padding: 8px;
+  font-size: 13px;
+  line-height: 15px;
+  background-color: #fcfcfc;
+  font-family: 'Source Code Pro', monospace;
+  font-weight: 400;
+}
+.CodeMirror-code pre {
+  color: rgba(77, 77, 76, 0.85);
+}
+.CodeMirror-code .cm-comment {
+  color: #718c00;
 }

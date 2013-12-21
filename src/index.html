@@ -14,7 +14,11 @@
       <ul id="js-list" class="nav nav-stacked switcher-list-items">
         <li id="js-list-hosts"><a data-toggle="tab" href="js-content-hosts">Hosts</a></li>
         <script type="text/template" id="js-tpl-list" style="display: none;">
-          <li><a data-toggle="tab" href="#js-content-<%=contentname%>"><%=hostname%><span class="status glyphicon glyphicon-chevron-right pull-right"></span></a></li>
+          <li><a data-toggle="tab" href="#js-content-<%=contentname%>">
+            <span class="change pull-right glyphicon glyphicon-asterisk"></span>
+            <%=hostname%>
+            <span class="status glyphicon glyphicon-chevron-right pull-right"></span>
+          </a></li>
         </script>
       </ul>
       <ul class="nav functions">
@@ -52,6 +56,21 @@
           <button type="button" class="btn btn-primary js-save">Save changes</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <div class="info-tip input js-pass" >
+    <div>
+      <span class="text">Password: </span>
+      <input class="" type="password">
+      <input type="button" value="Ok">
+      <input type="button" value="Cancel">
+    </div>
+  </div>
+
+  <div class="info-tip js-text" >
+    <div>
+      <span class="text">Done..</span>
     </div>
   </div>
 
