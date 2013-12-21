@@ -1,7 +1,10 @@
+var EOL = require('os').EOL;
+
 define(function(require) {
 
   return {
 
+    test: '',
     hosts: [],
 
     defaultHosts: [
@@ -49,6 +52,8 @@ define(function(require) {
 
       host.host = editor.getValue();
       this.set();
+      this.prepare(index);
+      this.save();
     },
 
     set: function() {
@@ -155,17 +160,44 @@ define(function(require) {
     onSaveFail: function(code) {
     },
 
-    active: function(index) {
-      this.activeHosts = this.hosts[0].host + this.hosts[index].host;
+    use: function(index) {
+      this.hosts.forEach(function(element) {
+        if (element.using) {
+          element.using = false;
+        }
+      });
+
+      this.hosts[index].using = true;
+      this.prepare(index);
+      this.set();
       this.save();
     },
 
-    save: function(identify) {
+    prepare: function(index) {
+      this.text =
+        this.hosts[0].host +
+        EOL + EOL +
+        this.hosts[index].host +
+        EOL + EOL;
+    },
+
+    active: function(index) {
+      this.hosts.forEach(function(element) {
+        if (element.active) {
+          element.active = false;
+        }
+      });
+
+      this.hosts[index].active = true;
+      this.set();
+    },
+
+    save: function() {
       if (!this.password) {
         //return this.showModal();
       }
       source.save({
-        text: this.activeHosts,
+        text: this.text,
         password: this.password,
         done: this.onSaveDone,
         fail: this.onSaveFail,

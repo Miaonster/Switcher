@@ -15,6 +15,7 @@ define(function(require) {
       var index = $(this).parent().prevAll('li').length - 1;
       view.active(index - 1);
       hosts.active(index);
+      hosts.use(index);
       e.preventDefault();
     });
 
