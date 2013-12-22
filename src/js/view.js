@@ -39,9 +39,13 @@ define(function(require) {
     show: function(host) {
     },
 
-    active: function(index) {
+    use: function(index) {
       $('.using').removeClass('using');
       $('.js-custom').eq(index).addClass('using');
+    },
+
+    active: function(index) {
+      $('#js-list > li').eq(index).find('a').tab('show');
     },
 
     choose: function() {
@@ -54,6 +58,7 @@ define(function(require) {
           $item;
 
       hashArr = {
+        id: element.id,
         hostname: element.name,
         contentname: element.name.toLowerCase()
       };
@@ -90,7 +95,7 @@ define(function(require) {
       html = this.content;
 
       hashArr = {
-        hostname: element.name.toLowerCase()
+        id: element.id
       };
 
       $item = $(template(html, hashArr));

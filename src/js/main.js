@@ -13,7 +13,7 @@ define(function(require) {
 
     $doc.on('dblclick', '.js-custom a', function(e) {
       var index = $(this).parent().prevAll('li').length;
-      view.active(index - 2);
+      view.use(index - 2);
       hosts.active(index);
       hosts.use(index);
       e.preventDefault();

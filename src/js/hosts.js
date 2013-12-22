@@ -8,6 +8,8 @@ define(function(require) {
 
   return {
 
+    _incrementIndex: 0,
+
     def: null,
 
     test: '',
@@ -15,6 +17,7 @@ define(function(require) {
 
     defaultHosts: [
       {
+        id: 'all',
         name: 'Hosts',
         host: '',
         active: false,
@@ -22,6 +25,7 @@ define(function(require) {
         readOnly: true
       },
       {
+        id: 'common',
         name: 'Common',
         host: '',
         active: false,
@@ -44,8 +48,19 @@ define(function(require) {
     ],
 
     init: function() {
+      this.initIncrementIndex();
       this.hosts = this.get() || this.defaultHosts.slice(0);
       this.refresh();
+    },
+
+    initIncrementIndex: function() {
+      this._incrementIndex = localStorage.getItem('incrementIndex') || 0;
+    },
+
+    incrementIndex: function() {
+      this._incrementIndex++;
+      localStorage.setItem('incrementIndex', this._incrementIndex);
+      return this._incrementIndex;
     },
 
     refresh: function() {
@@ -74,7 +89,7 @@ define(function(require) {
 
     set: function() {
       var arr = [],
-          attrs = 'name host using active custom readOnly'.split(' ');
+          attrs = 'id name host using active custom readOnly'.split(' ');
 
       this.hosts.forEach(function(host) {
         var tmp = {};
@@ -102,14 +117,7 @@ define(function(require) {
     },
 
     change: function(index, key, value) {
-      var host = this.hosts[index];
-
-      if (!host) {
-        return false;
-      }
-
-      host[key] = value;
-
+      this.hosts[index][key] = value;
       this.set();
     },
 
@@ -119,12 +127,14 @@ define(function(require) {
     },
 
     add: function() {
-      var template,
+      var _this = this,
+          template,
           hashArr,
           element,
           $host;
 
       element = {
+        id: this.incrementIndex(),
         name: 'New One',
         host: '',
         using: false,
@@ -132,39 +142,19 @@ define(function(require) {
         custom: true
       }
 
-      $host = view.add(element);
+      view.add(element);
 
-      this.hosts.push(element);
+      _this.hosts.push(element);
+      _this.set();
 
-      this.set();
-
-      //hashArr = {
-      //  hostname: element.name
-      //};
-
-      //template = render(html, hashArr);
-
-      //$host = $(template);
-
-      //if (element.active) {
-      //  $host.addClass('active');
-      //}
-
-      //if (element.custom) {
-      //  $host.addClass('js-custom');
-      //}
-
-      //if (element.using) {
-      //  $host.addClass('using');
-      //}
-
-      $host.data('hosts', element.host);
-
-      $host.insertBefore('#tpl-list');
-
-      $host.children('a').rename({
+      $('.js-custom').last().children('a').rename({
         stop: function() {
-          this.change(hosts.hosts.length - 1, 'name', this.text());
+          var index = _this.hosts.length - 1;
+          _this.change(index, 'name', this.text().trim());
+          _this.active(index);
+          _this.use(index);
+          view.active(index);
+          view.use(index - 2);
         }
       });
 
