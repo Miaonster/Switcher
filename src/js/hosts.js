@@ -27,20 +27,20 @@ define(function(require) {
         active: false,
         toggle: false
       },
-      {
-        name: 'QA',
-        host: '',
-        using: true,
-        active: true,
-        custom: true
-      },
-      {
-        name: 'Dev',
-        host: '# this is dev host\n 127.0.0.1 www.haha.com\n',
-        using: false,
-        active: false,
-        custom: true
-      },
+      //{
+      //  name: 'QA',
+      //  host: '',
+      //  using: true,
+      //  active: true,
+      //  custom: true
+      //},
+      //{
+      //  name: 'Dev',
+      //  host: '# this is dev host\n 127.0.0.1 www.haha.com\n',
+      //  using: false,
+      //  active: false,
+      //  custom: true
+      //},
     ],
 
     init: function() {
