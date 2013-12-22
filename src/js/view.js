@@ -1,9 +1,8 @@
 define(function(require) {
 
   var view,
-      Tip = require('./tip'),
-      pass = new Tip('.js-pass'),
-      text = new Tip('.js-text');
+      pass = require('./tip').pass,
+      text = require('./tip').text;
 
   view = {
 
@@ -83,6 +82,8 @@ define(function(require) {
     _addContent: function(element) {
       var hashArr,
           html,
+          readOnly,
+          options,
           $item,
           $content;
 
@@ -98,8 +99,17 @@ define(function(require) {
       $content.val(element.host);
       $item.insertBefore('#js-tpl-content');
 
-      element.editor = CodeMirror.fromTextArea($content.get(0), { mode: 'hosts' } );
-      element.editor.on('change', this._onchange);
+      readOnly = element.readOnly ? 'nocursor' : false;
+
+      options = {
+        mode: 'hosts',
+        readOnly: readOnly,
+      };
+
+      element.editor = CodeMirror.fromTextArea($content.get(0),  options);
+      if (!readOnly) {
+        element.editor.on('change', this._onchange);
+      }
 
       if (!element.active) {
         $item.removeClass('active');
@@ -111,14 +121,23 @@ define(function(require) {
     },
 
     _onsave: function() {
+      text.text('Host saved..').drop();
       $('.js-custom.active').find('.change').hide();
     },
 
     mousetrap: function() {
       Mousetrap.bindGlobal('command+s', function() {
-        var index = $('.switcher-content.active').prevAll('.switcher-content').length - 1;
-        view._onsave();
-        hosts.store(index);
+        var index = $('.switcher-content.active').prevAll('.switcher-content').length;
+
+        if (index === 0) {
+          return;
+        }
+
+        hosts
+          .store(index)
+            .done(function() {
+              view._onsave();
+            });
       });
     }
 

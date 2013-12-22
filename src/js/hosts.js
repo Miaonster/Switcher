@@ -1,13 +1,26 @@
-var EOL = require('os').EOL;
+var EOL = require('os').EOL,
+    deferred = require('JQDeferred');
 
 define(function(require) {
 
+  var pass = require('./tip').pass,
+      text = require('./tip').text;
+
   return {
+
+    def: null,
 
     test: '',
     hosts: [],
 
     defaultHosts: [
+      {
+        name: 'Hosts',
+        host: '',
+        active: false,
+        toggle: false,
+        readOnly: true
+      },
       {
         name: 'Common',
         host: '',
@@ -51,14 +64,17 @@ define(function(require) {
       editor = host.editor;
 
       host.host = editor.getValue();
-      this.set();
+
       this.prepare(index);
+      this.set();
       this.save();
+
+      return this.def;
     },
 
     set: function() {
       var arr = [],
-          attrs = 'name host using active custom'.split(' ');
+          attrs = 'name host using active custom readOnly'.split(' ');
 
       this.hosts.forEach(function(host) {
         var tmp = {};
@@ -170,15 +186,24 @@ define(function(require) {
       this.hosts[index].using = true;
       this.prepare(index);
       this.set();
-      this.save();
+      this.save()
+        .done(function() {
+          text.text('Host switched..').drop();
+        });
     },
 
     prepare: function(index) {
+
       this.text =
-        this.hosts[0].host +
-        EOL + EOL +
-        this.hosts[index].host +
-        EOL + EOL;
+        [1, index]
+          .map(function(single) {
+            var host = this.hosts[single];
+            return '# ' + host.name + EOL + host.host;
+          }, this)
+          .join(EOL);
+
+      this.hosts[0].host = this.text;
+      this.hosts[0].editor.setValue(this.text);
     },
 
     active: function(index) {
@@ -193,25 +218,37 @@ define(function(require) {
     },
 
     save: function() {
-      if (!this.password) {
-        //return this.showModal();
+      var _this = this;
+
+      if (!this.def || this.def.state() !== 'pending') {
+        this.def = deferred();
       }
+
+      if (!this.password) {
+        this.pass();
+        return this.def.promise();
+      }
+
       source.save({
         text: this.text,
         password: this.password,
-        done: this.onSaveDone,
-        fail: this.onSaveFail,
+        done: function() {
+          _this.onSaveDone();
+          _this.def.resolve();
+        },
+        fail: function() {
+          _this.def.reject();
+        },
       });
+
+      return this.def.promise();
     },
 
-    showModal: function() {
-      var _this = this,
-          $modal = $('#password-modal');
+    pass: function() {
+      var _this = this;
 
-      $modal.modal('show');
-      $modal.find('.js-save').one('click', function() {
-        $modal.modal('hide');
-        _this.password = $modal.find('.js-password').val();
+      pass.drop(function(value) {
+        _this.password = value;
         _this.save();
       });
     }

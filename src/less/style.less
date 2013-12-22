@@ -4,6 +4,7 @@
 @lightWhite: #fcfcfc;
 
 body {
+  -webkit-user-select: none;
   font: 13px Helvetica, arial, freesans, clean, sans-serif;
 }
 
@@ -187,16 +188,20 @@ html,
   font-variant: normal;
   vertical-align: baseline;
   white-space: pre;
-  padding: 8px;
+  padding: 8px 8px 8px 0;
   font-size: 13px;;
   line-height: 15px;
   background-color: @lightWhite;
   font-family: 'Source Code Pro', monospace;
   //font-family: Consolas, Monaco, 'Andale Mono', monospace;;
   font-weight: 400;
+
+  .CodeMirror-scroll {
+    padding-left: 18px;
+  }
 }
 
-.CodeMirror-code{
+.CodeMirror-code {
 
   pre {
     color: rgba(77, 77, 76, 0.85);

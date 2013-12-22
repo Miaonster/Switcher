@@ -112,6 +112,7 @@
   background-color: #1c9b47;
   text-align: left;
 }
+.info-tip.input div input[type=password],
 .info-tip.input div input[type=input] {
   background-color: #1c9b47;
   border: 0;
@@ -129,6 +130,7 @@
   text-decoration: underline;
 }
 body {
+  -webkit-user-select: none;
   font: 13px Helvetica, arial, freesans, clean, sans-serif;
 }
 h1,
@@ -269,12 +271,15 @@ html,
   font-variant: normal;
   vertical-align: baseline;
   white-space: pre;
-  padding: 8px;
+  padding: 8px 8px 8px 0;
   font-size: 13px;
   line-height: 15px;
   background-color: #fcfcfc;
   font-family: 'Source Code Pro', monospace;
   font-weight: 400;
+}
+.CodeMirror .CodeMirror-scroll {
+  padding-left: 18px;
 }
 .CodeMirror-code pre {
   color: rgba(77, 77, 76, 0.85);

@@ -12,8 +12,8 @@ define(function(require) {
   function init() {
 
     $doc.on('dblclick', '.js-custom a', function(e) {
-      var index = $(this).parent().prevAll('li').length - 1;
-      view.active(index - 1);
+      var index = $(this).parent().prevAll('li').length;
+      view.active(index - 2);
       hosts.active(index);
       hosts.use(index);
       e.preventDefault();
@@ -30,6 +30,13 @@ define(function(require) {
       $item.remove();
       hosts.del(index);
       hosts.active(index - 1);
+    });
+
+    $doc.on('shown.bs.tab', '[data-toggle=tab]', function (e) {
+
+      var id = $(this).attr('href');
+      $(id).find('.CodeMirror').get(0).CodeMirror.refresh();
+
     });
 
     hosts.init();
