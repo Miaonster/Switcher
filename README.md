@@ -1,7 +1,7 @@
 Switcher
 ========
 
-Switcher lets switch your hosts gracefully, which is based on node-webkit.
+Switcher. Switch your hosts gracefully. Based on node-webkit.
 
 ### Downloads
 
