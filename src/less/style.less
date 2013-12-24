@@ -1,7 +1,7 @@
 @import "font";
 @import "tip";
 
-@lightWhite: #fcfcfc;
+@lightWhite: #fefefe;
 
 body {
   -webkit-user-select: none;
@@ -101,8 +101,8 @@ html,
       }
 
       > a {
-        color: #585858;
-        font-weight: 300;
+        color: #333;
+        font-weight: normal;
         cursor: default;
       }
 
@@ -198,18 +198,25 @@ html,
   font-weight: 400;
 
   .CodeMirror-scroll {
-    padding-left: 18px;
+    padding-left: 14px;
   }
+}
+
+::selection,
+.CodeMirror-focused .CodeMirror-selected {
+  text-shadow: none;
+  background: rgba(65,131,196,0.4);
 }
 
 .CodeMirror-code {
 
   pre {
-    color: #686868;
+    color: #333333;
   }
 
   .cm-comment {
-    color: rgb(113, 140, 0);
+    color: rgb(115, 138, 5);
+    font-style: italic;
   }
 }
 

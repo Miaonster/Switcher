@@ -192,7 +192,7 @@ html,
   box-shadow: 0px 1px #dfe4ea, 0px -1px #dfe4ea;
   background: white;
   margin-right: -1px;
-  background-color: #fcfcfc;
+  background-color: #fefefe;
 }
 .switcher-list .switcher-list-items > li.active .status {
   display: inline;
@@ -203,11 +203,11 @@ html,
 }
 .switcher-list .switcher-list-items > li.active > a:hover {
   background-color: white;
-  background-color: #fcfcfc;
+  background-color: #fefefe;
 }
 .switcher-list .switcher-list-items > li > a {
-  color: #585858;
-  font-weight: 300;
+  color: #333;
+  font-weight: normal;
   cursor: default;
 }
 .switcher-list .switcher-list-items > li .status {
@@ -275,16 +275,22 @@ html,
   padding: 8px 8px 8px 0;
   font-size: 12px;
   line-height: 1.75;
-  background-color: #fcfcfc;
+  background-color: #fefefe;
   font-family: Monaco, 'Source Code Pro', Monaco, Consolas, 'Andale Mono', monospace;
   font-weight: 400;
 }
 .CodeMirror .CodeMirror-scroll {
-  padding-left: 18px;
+  padding-left: 14px;
+}
+::selection,
+.CodeMirror-focused .CodeMirror-selected {
+  text-shadow: none;
+  background: rgba(65, 131, 196, 0.4);
 }
 .CodeMirror-code pre {
-  color: #686868;
+  color: #333333;
 }
 .CodeMirror-code .cm-comment {
-  color: #718c00;
+  color: #738a05;
+  font-style: italic;
 }
