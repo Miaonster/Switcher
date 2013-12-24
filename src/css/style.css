@@ -132,6 +132,7 @@
 body {
   -webkit-user-select: none;
   font: 13px Helvetica, arial, freesans, clean, sans-serif;
+  border-top: 1px solid #696969;
 }
 h1,
 h2,
@@ -205,7 +206,7 @@ html,
   background-color: #fcfcfc;
 }
 .switcher-list .switcher-list-items > li > a {
-  color: #716b7a;
+  color: #585858;
   font-weight: 300;
   cursor: default;
 }
@@ -272,17 +273,17 @@ html,
   vertical-align: baseline;
   white-space: pre;
   padding: 8px 8px 8px 0;
-  font-size: 13px;
-  line-height: 15px;
+  font-size: 12px;
+  line-height: 1.75;
   background-color: #fcfcfc;
-  font-family: 'Source Code Pro', monospace;
+  font-family: Monaco, 'Source Code Pro', Monaco, Consolas, 'Andale Mono', monospace;
   font-weight: 400;
 }
 .CodeMirror .CodeMirror-scroll {
   padding-left: 18px;
 }
 .CodeMirror-code pre {
-  color: rgba(77, 77, 76, 0.85);
+  color: #686868;
 }
 .CodeMirror-code .cm-comment {
   color: #718c00;
