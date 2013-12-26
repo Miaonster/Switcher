@@ -132,14 +132,17 @@ define(function(require) {
 
     mousetrap: function() {
       Mousetrap.bindGlobal('command+s', function() {
-        var index = $('.switcher-content.active').prevAll('.switcher-content').length;
+        var index = $('.switcher-content.active').prevAll('.switcher-content').length,
+            using = $('.js-switcher-nav.using').prevAll('.js-switcher-nav').length;
 
         if (index === 0) {
           return;
         }
 
+        hosts.store(index);
+        hosts.prepare(using);
         hosts
-          .store(index)
+          .save()
             .done(function() {
               view._onsave();
             });

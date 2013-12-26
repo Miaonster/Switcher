@@ -80,11 +80,12 @@ define(function(require) {
 
       host.host = editor.getValue();
 
-      this.prepare(index);
       this.set();
-      this.save();
 
-      return this.def;
+      //this.prepare(index);
+      //this.save();
+
+      //return this.def;
     },
 
     set: function() {
