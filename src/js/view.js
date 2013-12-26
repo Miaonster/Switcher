@@ -131,6 +131,10 @@ define(function(require) {
     },
 
     mousetrap: function() {
+
+      /**
+       * Bind Command+S
+       */
       Mousetrap.bindGlobal('command+s', function() {
         var index = $('.switcher-content.active').prevAll('.switcher-content').length,
             using = $('.js-switcher-nav.using').prevAll('.js-switcher-nav').length;
@@ -147,6 +151,47 @@ define(function(require) {
               view._onsave();
             });
       });
+
+      /**
+       * Bind Command+1
+       */
+
+      [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(element) {
+        Mousetrap.bindGlobal('command+' + element, (function(element) {
+          return function() {
+            $('.js-switcher-nav:nth-child(' + (element) + ')').find('a').tab('show');
+          }
+        })(element));
+      });
+
+      /**
+       * Bind Command+Tab & Command+C+Tab
+       */
+      Mousetrap.bindGlobal('ctrl+tab', function() {
+        var $one = $('.js-switcher-nav.active').next('.js-switcher-nav');
+
+        if (!$one.length) {
+          $one = $('.js-switcher-nav:first');
+        }
+
+        $one.find('a').tab('show');
+      });
+
+      Mousetrap.bindGlobal('ctrl+shift+tab', function() {
+        var $one = $('.js-switcher-nav.active').prev('.js-switcher-nav');
+
+        if (!$one.length) {
+          $one = $('.js-switcher-nav:last');
+        }
+
+        $one.find('a').tab('show');
+      });
+
+      Mousetrap.bindGlobal('command+n', function() {
+        $('.js-add').click();
+      });
+
+
     }
 
   };
