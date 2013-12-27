@@ -143,13 +143,7 @@ define(function(require) {
           return;
         }
 
-        hosts.store(index);
-        hosts.prepare(using);
-        hosts
-          .save()
-            .done(function() {
-              view._onsave();
-            });
+        hosts.store(index).done(function() { view._onsave(); });
       });
 
       /**

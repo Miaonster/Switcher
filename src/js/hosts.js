@@ -80,12 +80,10 @@ define(function(require) {
 
       host.host = editor.getValue();
 
+      this.save();
       this.set();
 
-      //this.prepare(index);
-      //this.save();
-
-      //return this.def;
+      return this.def;
     },
 
     set: function() {
@@ -124,6 +122,10 @@ define(function(require) {
 
     del: function(index) {
       this.hosts.splice(index, 1);
+      this.save()
+        .done(function() {
+          text.text('Host saved..').drop();
+        });
       this.set();
     },
 
@@ -175,23 +177,31 @@ define(function(require) {
       });
 
       this.hosts[index].using = true;
-      this.prepare(index);
-      this.set();
       this.save()
         .done(function() {
           text.text('Host switched..').drop();
         });
+      this.set();
     },
 
-    prepare: function(index) {
+    _prepare: function() {
+      var i,
+          arr = [ 1 ];
+
+      for (i = 0; i < this.hosts.length; i++) {
+        if (this.hosts[i].using) {
+          arr.push(i);
+          break;
+        }
+      }
 
       this.text =
-        [1, index]
-          .map(function(single) {
-            var host = this.hosts[single];
-            return '# ' + host.name + EOL + host.host;
-          }, this)
-          .join(EOL);
+          arr
+            .map(function(single) {
+              var host = this.hosts[single];
+              return '# ' + host.name + EOL + host.host;
+            }, this)
+            .join(EOL + EOL);
 
       this.hosts[0].host = this.text;
       this.hosts[0].editor.setValue(this.text);
@@ -219,6 +229,8 @@ define(function(require) {
         this.pass();
         return this.def.promise();
       }
+
+      this._prepare();
 
       source.save({
         text: this.text,

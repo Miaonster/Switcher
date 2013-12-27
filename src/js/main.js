@@ -13,6 +13,7 @@ define(function(require) {
 
     $doc.on('dblclick', '.js-custom a', function(e) {
       var index = $(this).parent().prevAll('li').length;
+      view.active(index);
       view.use(index - 2);
       hosts.active(index);
       hosts.use(index);
@@ -26,10 +27,21 @@ define(function(require) {
     $doc.on('click', '.js-del', function(e) {
       var $item = $('.active'),
           index = $item.prevAll('li:not(#js-list-hosts)').length;
+
+      // If active item is common / host
+      if (index < 2) {
+        return false;
+      }
+
       $item.prev().addClass('active');
       $item.remove();
       hosts.del(index);
       hosts.active(index - 1);
+      view.active(index - 1);
+
+      //hosts.use(index - 1);
+      //view.use(index - 3);
+
     });
 
     $doc.on('shown.bs.tab', '[data-toggle=tab]', function (e) {
