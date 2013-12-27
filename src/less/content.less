@@ -1,0 +1,55 @@
+@import (reference) "variable";
+
+.switcher-content {
+  height: 100%;
+}
+
+.switcher-content {
+  height: 100%;
+  cursor: text;
+  float: left;
+  position: relative;
+  width: ~"-webkit-calc(100% - @{listWidth})";
+}
+
+.tab-content,
+.switcher-content,
+.CodeMirror {
+  height: 100%;
+}
+
+.CodeMirror {
+  font-variant: normal;
+  vertical-align: baseline;
+  white-space: pre;
+  padding: 8px 8px 8px 0;
+  font-size: 12px;;
+  line-height: 1.75;
+  background-color: @lightWhite;
+  //font-family: Monaco, 'Source Code Pro', monospace;
+  font-family: Monaco, 'Source Code Pro', Monaco, Consolas, 'Andale Mono', monospace;;
+  font-weight: 400;
+
+  .CodeMirror-scroll {
+    padding-left: 14px;
+  }
+}
+
+::selection,
+.CodeMirror-focused .CodeMirror-selected {
+  text-shadow: none;
+  background: rgba(65,131,196,0.4);
+}
+
+.CodeMirror-code {
+
+  pre {
+    color: #333333;
+  }
+
+  .cm-comment {
+    color: rgb(115, 138, 5);
+    font-style: italic;
+  }
+
+}

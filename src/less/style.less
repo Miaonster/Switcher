@@ -1,12 +1,14 @@
+@import (reference) "variable";
+
 @import "font";
 @import "tip";
 
-@lightWhite: #fefefe;
+@import "nav";
+@import "content";
 
 body {
   -webkit-user-select: none;
   font: 13px Helvetica, arial, freesans, clean, sans-serif;
-  border-top: 1px solid #696969;
 }
 
 h1,
@@ -18,217 +20,16 @@ h6 {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
 }
 
-.modal-footer {
-  margin-top: 0;
-}
-
 body,
 html,
-.wrap,
-.switcher-list,
-.switcher-content {
+.wrap {
   height: 100%;
 }
 
+body {
+  border-top: 1px solid #696969;
+}
 
 .wrap {
   padding: 0;
 }
-
-@listWidth: 202px;
-
-.switcher-list {
-
-  @functionHeight: 30px;
-
-  @LeftBgColor: #d5dbe2;
-
-  float: left;
-  width: @listWidth;
-  position: relative;
-  min-height: 1px;
-  border-left: 1px solid #dfe4ea;
-  border-right: 1px solid #dfe4ea;
-  background-color: #ffffff;
-
-  .switcher-list-items {
-    height: ~"-webkit-calc(100% - @{functionHeight})";
-
-    > li.using {
-      > a {
-        color: #ff7f66;
-        font-weight: 700;
-        background-color: transparent;
-        &:hover {
-          background-color: transparent;
-        }
-      }
-
-      &:hover {
-        background-color: @lightWhite !important;
-      }
-    }
-
-    > li.divider {
-      height: 1px;
-      margin: 0;
-      overflow: hidden;
-      background-color: #e5e5e5;
-    }
-
-    > li {
-      line-height: 19px;
-      margin-top: 0;
-      font-family: 'open sans';
-      vertical-align: baseline;
-
-      &.active {
-        border-right: 0;
-        box-shadow: inset 0px 1px #dfe4ea, inset 0px -1px #dfe4ea;
-        background: white;
-        margin-right: -1px;
-        background-color: @lightWhite;
-
-        &:first-child {
-          box-shadow: inset 0px -1px #dfe4ea;
-        }
-
-        .status {
-          display: inline;
-          color: #dfe4ea;
-        }
-
-        .change {
-          right: 36px !important;
-        }
-
-
-        &:hover {
-          background-color: @lightWhite !important;
-        }
-
-        > a:hover {
-          background-color: transparent;
-        }
-      }
-
-      > a {
-        color: #333;
-        font-weight: normal;
-        cursor: default;
-      }
-
-      //.change,
-      .status {
-        top: 2px;
-        display: none;
-      }
-
-      .change {
-        display: none;
-        position: absolute;
-        top: 17px;
-        right: 35px;
-        font-size: 5px;
-        line-height: 5px;
-        color: #716b7a;
-      }
-      .change:before {
-        content: ' ';
-        display: block;
-        height: 5px;
-        width: 5px;
-        border-radius: 50%;
-        background-color: #dfe4ea;
-      }
-    }
-  }
-
-  .functions {
-
-    @iconColor: #2185C5;
-
-    height: @functionHeight;
-    position: relative;
-    bottom: 0;
-    border-top: 1px solid #cccccc;
-
-    li {
-      font-size: 14px;
-      float: left;
-      height: 100%;
-      display: inline-block;
-      padding: 6px 12px;
-      //background-color: @iconColor;
-
-      &:hover {
-        //background-color: #FF7F66;
-      }
-    }
-
-    .add {
-
-      border-right: 1px #cccccc solid;
-
-      i {
-        height: 30px;
-        width: 30px;
-        margin-top: 23px;
-        margin-left: 13px;
-        display: inline-block;
-        background-image: url(../img/icons.png);
-        background-position: -85px 0;
-      }
-    }
-  }
-}
-
-.switcher-content {
-  height: 100%;
-  cursor: text;
-  float: left;
-  position: relative;
-  width: ~"-webkit-calc(100% - @{listWidth})";
-}
-
-.tab-content,
-.switcher-content,
-.CodeMirror {
-  height: 100%;
-}
-
-.CodeMirror {
-  font-variant: normal;
-  vertical-align: baseline;
-  white-space: pre;
-  padding: 8px 8px 8px 0;
-  font-size: 12px;;
-  line-height: 1.75;
-  background-color: @lightWhite;
-  //font-family: Monaco, 'Source Code Pro', monospace;
-  font-family: Monaco, 'Source Code Pro', Monaco, Consolas, 'Andale Mono', monospace;;
-  font-weight: 400;
-
-  .CodeMirror-scroll {
-    padding-left: 14px;
-  }
-}
-
-::selection,
-.CodeMirror-focused .CodeMirror-selected {
-  text-shadow: none;
-  background: rgba(65,131,196,0.4);
-}
-
-.CodeMirror-code {
-
-  pre {
-    color: #333333;
-  }
-
-  .cm-comment {
-    color: rgb(115, 138, 5);
-    font-style: italic;
-  }
-}
-

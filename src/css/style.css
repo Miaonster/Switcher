@@ -129,31 +129,8 @@
   color: #ffffff;
   text-decoration: underline;
 }
-body {
-  -webkit-user-select: none;
-  font: 13px Helvetica, arial, freesans, clean, sans-serif;
-  border-top: 1px solid #696969;
-}
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
-}
-.modal-footer {
-  margin-top: 0;
-}
-body,
-html,
-.wrap,
-.switcher-list,
-.switcher-content {
+.switcher-list {
   height: 100%;
-}
-.wrap {
-  padding: 0;
 }
 .switcher-list {
   float: left;
@@ -266,6 +243,9 @@ html,
 }
 .switcher-content {
   height: 100%;
+}
+.switcher-content {
+  height: 100%;
   cursor: text;
   float: left;
   position: relative;
@@ -301,4 +281,27 @@ html,
 .CodeMirror-code .cm-comment {
   color: #738a05;
   font-style: italic;
+}
+body {
+  -webkit-user-select: none;
+  font: 13px Helvetica, arial, freesans, clean, sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+}
+body,
+html,
+.wrap {
+  height: 100%;
+}
+body {
+  border-top: 1px solid #696969;
+}
+.wrap {
+  padding: 0;
 }
