@@ -58,10 +58,14 @@ html,
       > a {
         color: #ff7f66;
         font-weight: 700;
-        background-color: inherit;
+        background-color: transparent;
         &:hover {
-          background-color: #eeeeee;
+          background-color: transparent;
         }
+      }
+
+      &:hover {
+        background-color: @lightWhite !important;
       }
     }
 
@@ -80,10 +84,14 @@ html,
 
       &.active {
         border-right: 0;
-        box-shadow: 0px 1px #dfe4ea, 0px -1px #dfe4ea;
+        box-shadow: inset 0px 1px #dfe4ea, inset 0px -1px #dfe4ea;
         background: white;
         margin-right: -1px;
         background-color: @lightWhite;
+
+        &:first-child {
+          box-shadow: inset 0px -1px #dfe4ea;
+        }
 
         .status {
           display: inline;
@@ -94,9 +102,13 @@ html,
           right: 36px !important;
         }
 
+
+        &:hover {
+          background-color: @lightWhite !important;
+        }
+
         > a:hover {
-          background-color: white;
-          background-color: @lightWhite;
+          background-color: transparent;
         }
       }
 

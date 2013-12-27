@@ -170,10 +170,13 @@ html,
 .switcher-list .switcher-list-items > li.using > a {
   color: #ff7f66;
   font-weight: 700;
-  background-color: inherit;
+  background-color: transparent;
 }
 .switcher-list .switcher-list-items > li.using > a:hover {
-  background-color: #eeeeee;
+  background-color: transparent;
+}
+.switcher-list .switcher-list-items > li.using:hover {
+  background-color: #fefefe !important;
 }
 .switcher-list .switcher-list-items > li.divider {
   height: 1px;
@@ -189,10 +192,13 @@ html,
 }
 .switcher-list .switcher-list-items > li.active {
   border-right: 0;
-  box-shadow: 0px 1px #dfe4ea, 0px -1px #dfe4ea;
+  box-shadow: inset 0px 1px #dfe4ea, inset 0px -1px #dfe4ea;
   background: white;
   margin-right: -1px;
   background-color: #fefefe;
+}
+.switcher-list .switcher-list-items > li.active:first-child {
+  box-shadow: inset 0px -1px #dfe4ea;
 }
 .switcher-list .switcher-list-items > li.active .status {
   display: inline;
@@ -201,9 +207,11 @@ html,
 .switcher-list .switcher-list-items > li.active .change {
   right: 36px !important;
 }
+.switcher-list .switcher-list-items > li.active:hover {
+  background-color: #fefefe !important;
+}
 .switcher-list .switcher-list-items > li.active > a:hover {
-  background-color: white;
-  background-color: #fefefe;
+  background-color: transparent;
 }
 .switcher-list .switcher-list-items > li > a {
   color: #333;
