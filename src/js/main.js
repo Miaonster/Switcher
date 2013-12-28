@@ -1,15 +1,18 @@
 var fs = require('fs'),
+    gui = require('nw.gui'),
+    win = gui.Window.get(),
     template,
     hosts,
     view,
-    source;
+    source,
+    setting;
 
 define(function(require) {
 
   var shortcut,
       $doc = $(document);
 
-  function init() {
+  function initDom() {
 
     $doc.on('dblclick', '.js-custom a', function(e) {
       var index = $(this).parent().prevAll('li').length;
@@ -28,42 +31,42 @@ define(function(require) {
       var $item = $('.active'),
           index = $item.prevAll('li:not(#js-list-hosts)').length;
 
-      // If active item is common / host
-      if (index < 2) {
-        return false;
-      }
+      if (index < 2) { return false; }
 
       $item.prev().addClass('active');
       $item.remove();
       hosts.del(index);
       hosts.active(index - 1);
       view.active(index - 1);
-
-      //hosts.use(index - 1);
-      //view.use(index - 3);
-
     });
 
     $doc.on('shown.bs.tab', '[data-toggle=tab]', function (e) {
-
       var id = $(this).attr('href');
       $(id).find('.CodeMirror').get(0).CodeMirror.refresh();
-
     });
+
+  }
+
+  function initModules() {
+    var rename;
+
+    template = require('./template'),
+    hosts = require('./host'),
+    view = require('./view'),
+    source = require('./source');
+    setting = require('./setting');
+    rename = require('./rename');
+
+    rename.init(jQuery);
 
     hosts.init();
     view.init(hosts.hosts);
-
-    //$('#js-content').val(source.read());
+    setting.init();
   }
 
-  template = require('./template'),
-  hosts = require('./hosts'),
-  view = require('./view'),
-  source = require('./source');
+  initDom();
+  initModules();
 
-  require('./rename').init(jQuery);
-
-  init();
-
+  win.show();
+  win.focus();
 });

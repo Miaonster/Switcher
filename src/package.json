@@ -10,7 +10,8 @@
   ],
   "window": {
     "icon": "img/mark.png",
-    "toolbar": false,
+    "toolbar": true,
+    "show": false,
     "width": 900,
     "height": 675,
     "position": "mouse",
