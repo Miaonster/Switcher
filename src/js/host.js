@@ -91,7 +91,7 @@ define(function(require) {
       host = this.hosts[index];
       editor = host.editor;
 
-      host.host = editor.getValue();
+      host.host = editor.getValue().trim();
 
       this.save();
       this.set();
@@ -173,7 +173,6 @@ define(function(require) {
           view.use(index - 2);
         }
       });
-
     },
 
     onSaveDone: function() {
@@ -199,22 +198,19 @@ define(function(require) {
 
     _prepare: function() {
       var i,
-          arr = [ 1 ];
+          host;
+
+      this.text = this.hosts[1].host + EOL + EOL;
 
       for (i = 0; i < this.hosts.length; i++) {
-        if (this.hosts[i].using) {
-          arr.push(i);
+        host = this.hosts[i];
+        if (host.using) {
+          this.text += '###SWITCHERSTART###' + host.name + '###' + host.id+ '###' + EOL;
+          this.text += host.host + EOL;
+          this.text += '###SWITCHEREND###' + EOL;
           break;
         }
       }
-
-      this.text =
-          arr
-            .map(function(single) {
-              var host = this.hosts[single];
-              return '# ' + host.name + EOL + host.host;
-            }, this)
-            .join(EOL + EOL);
 
       this.hosts[0].host = this.text;
       this.hosts[0].editor.setValue(this.text);
