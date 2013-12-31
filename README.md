@@ -9,12 +9,12 @@ Switcher. Switch your hosts gracefully. Based on node-webkit.
 
 ### Shortcuts
 
-* <kbd>⌘</kbd>+<kbd>1</kbd> Choose First Profile
-* <kbd>⌘</kbd>+<kbd>Tab</kbd> Next Profile
-* <kbd>⌘</kbd>+<kbd>Shift</kbd>+<kbd>Tab</kbd> Prev Profile
+* <kbd>⌘</kbd><kbd>1</kbd> Choose First Profile
+* <kbd>⌘</kbd><kbd>Tab</kbd> Next Profile
+* <kbd>⌘</kbd><kbd>Shift</kbd><kbd>Tab</kbd> Prev Profile
 
-* <kbd>⌘</kbd>+<kbd>N</kbd> Save Current Profile
-* <kbd>⌘</kbd>+<kbd>S</kbd> New Profile
+* <kbd>⌘</kbd><kbd>N</kbd> Save Current Profile
+* <kbd>⌘</kbd><kbd>S</kbd> New Profile
 
 ### Screenshot
 
