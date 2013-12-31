@@ -1,4 +1,5 @@
 SHELL:=/bin/zsh
+VERSION:=1.0.1
 
 NAME=Switcher
 
@@ -18,3 +19,6 @@ install:
 
 clean:
 	@rm -rf build
+
+package:
+	@(cd build; zip -r -9 ${NAME}.${VERSION}.zip ${NAME}.app)
