@@ -51,19 +51,64 @@ define(function(require) {
       this.initIncrementIndex();
       this.hosts = this.get() || this.defaultHosts.slice(0);
 
-      //this.parseLocalHost();
+      this.initLocalHost();
+    },
 
-      this.refresh();
+    initLocalHost: function() {
+      var localHosts = this.parseLocalHost();
+
+      this.hosts.forEach(function(element) {
+        for (var i = 0; i < localHosts.length; i++) {
+          if (element.id == localHosts[i].id) {
+            element.name = localHosts[i].name;
+            element.host = localHosts[i].host;
+          }
+        }
+      });
     },
 
     parseLocalHost: function() {
-      var text = source.read(),
-          pattern = /###SWITCHERSTART###(.*?)###(.*?)###SWITCHEREND###/g,
-          matches = null,
-          local = {};
+      var i = 0,
+          tmp = '',
+          text = source.read(),
 
-      matches = pattern.exec(text);
+          local = null,
+          host = null,
+          id,
+          name,
 
+          matches = null;
+
+      local = [];
+
+      local.push({
+        id: 'all',
+        name: 'Hosts',
+        host: text
+      });
+
+      tmp = text;
+      tmp = tmp.replace(/###SWITCHERSTART###[^]*###SWITCHEREND###/gm, '').trim();
+
+      local.push({
+        id: 'common',
+        name: 'Common',
+        host: tmp
+      });
+
+      matches = /(###SWITCHERSTART###.*?###.*?###[^]*?###SWITCHEREND###)+/gm.exec(text);
+
+      for (i = 1; matches && i < matches.length; i++) {
+        tmp = matches[i];
+        tmp = /###SWITCHERSTART###(.*?)###(.*?)###([^]*?)###SWITCHEREND###/gm.exec(tmp);
+        local.push({
+          id: tmp[2],
+          name: tmp[1],
+          host: tmp[3].trim()
+        });
+      }
+
+      return local;
     },
 
     initIncrementIndex: function() {
