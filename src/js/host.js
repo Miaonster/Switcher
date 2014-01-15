@@ -160,6 +160,7 @@ define(function(require) {
 
       try {
         localStorage.setItem('hosts', JSON.stringify(arr));
+        e.trigger('change.hosts');
       } catch(e) {
         // Do nothing
       }

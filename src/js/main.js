@@ -5,7 +5,9 @@ var fs = require('fs'),
     hosts,
     view,
     source,
-    setting;
+    setting,
+    tray,
+    e;
 
 define(function(require) {
 
@@ -56,13 +58,17 @@ define(function(require) {
     source = require('./source');
     setting = require('./setting');
     rename = require('./rename');
+    tray = require('./tray');
 
     rename.init(jQuery);
 
     hosts.init();
     view.init(hosts.hosts);
     setting.init();
+    tray.init();
   }
+
+  e = $({});
 
   initDom();
   initModules();
