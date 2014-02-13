@@ -1,6 +1,7 @@
 var fs = require('fs'),
     gui = require('nw.gui'),
     win = gui.Window.get(),
+    platform = /^win/.test(process.platform) ? 'win' : 'mac',
     template,
     hosts,
     view,
