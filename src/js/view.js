@@ -131,11 +131,12 @@ define(function(require) {
     },
 
     mousetrap: function() {
+      var leader = platform === 'win' ? 'ctrl+' : 'command+';
 
       /**
        * Bind Command+S
        */
-      Mousetrap.bindGlobal('command+s', function() {
+      Mousetrap.bindGlobal(leader + 's', function() {
         var index = $('.switcher-content.active').prevAll('.switcher-content').length,
             using = $('.js-switcher-nav.using').prevAll('.js-switcher-nav').length;
 
@@ -151,10 +152,10 @@ define(function(require) {
        */
 
       [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(element) {
-        Mousetrap.bindGlobal('command+' + element, (function(element) {
+        Mousetrap.bindGlobal(leader + element, (function(element) {
           return function() {
             $('.js-switcher-nav:nth-child(' + (element) + ')').find('a').tab('show');
-          }
+          };
         })(element));
       });
 
@@ -181,10 +182,9 @@ define(function(require) {
         $one.find('a').tab('show');
       });
 
-      Mousetrap.bindGlobal('command+n', function() {
+      Mousetrap.bindGlobal(leader + 'n', function() {
         $('.js-add').click();
       });
-
 
     }
 
