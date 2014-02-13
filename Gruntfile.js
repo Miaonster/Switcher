@@ -47,7 +47,22 @@ module.exports = function(grunt) {
         files: ["src/less/**"],
         tasks: ["less:main"]
       }
-    }
+    },
+
+    nodewebkit: {
+      options: {
+        app_name: 'Switcher',
+        app_version: '1.0.2',
+        build_dir: './webkitbuilds',
+        mac: false,
+        mac_icns: 'asset/app.icns',
+        zip: true,
+        win: true,
+        linux32: false,
+        linux64: false
+      },
+      src: ['./src/**/*']
+    },
 
     //copy: {
     //  main: {
@@ -70,6 +85,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-node-webkit-builder');
 
   grunt.registerTask('build', ['less:main']);
 };
