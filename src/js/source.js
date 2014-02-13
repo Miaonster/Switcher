@@ -7,7 +7,8 @@ define(function() {
 
   return {
 
-    path: '/etc/hosts',
+    path: platform === 'win' ? "C:\\Windows\\System32\\drivers\\etc\\hosts" : '/etc/hosts',
+
     options: { encoding: 'utf8' },
 
     done: null,
@@ -26,13 +27,17 @@ define(function() {
       this.text = options.text;
       this.password = options.password;
 
-      this._chmod('777')
-        .done(function() {
-            _this._save();
-        })
-        .fail(function() {
-            _this.fail();
-        });
+      if (platform === 'win') {
+        this._saveWin();
+      } else {
+        this._chmod('777')
+          .done(function() {
+              _this._save();
+          })
+          .fail(function() {
+              _this.fail();
+          });
+      }
     },
 
     _save: function() {
@@ -45,6 +50,20 @@ define(function() {
 
       this.done();
       this._chmod('644');
+    },
+
+    _saveMac: function() {
+    },
+
+    _saveWin: function() {
+      try {
+        fs.writeFileSync(this.path, this.text, this.options);
+      } catch(e) {
+        this.fail(e.code);
+        return false;
+      }
+
+      this.done();
     },
 
     _chmod: function(stat) {
