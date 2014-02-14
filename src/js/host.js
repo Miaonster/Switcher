@@ -274,16 +274,16 @@ define(function(require) {
     },
 
     save: function() {
-      var _this = this;
+      var that = this;
 
       if (!this.def || this.def.state() !== 'pending') {
         this.def = deferred();
       }
 
-      if (!this.password) {
-        this.pass();
-        return this.def.promise();
-      }
+      //if (!this.password) {
+      //  this.pass();
+      //  return this.def.promise();
+      //}
 
       this._prepare();
 
@@ -291,11 +291,15 @@ define(function(require) {
         text: this.text,
         password: this.password,
         done: function() {
-          _this.onSaveDone();
-          _this.def.resolve();
+          that.onSaveDone();
+          that.def.resolve();
         },
         fail: function() {
-          _this.def.reject();
+          if (platform !== 'win') {
+            that.pass();
+          } else {
+            that.def.reject();
+          }
         },
       });
 
@@ -303,12 +307,20 @@ define(function(require) {
     },
 
     pass: function() {
-      var _this = this;
+      var that = this;
 
-      pass.drop(function(value) {
-        _this.password = value;
-        _this.save();
-      });
+      pass.drop(
+
+        function done(value) {
+          that.password = value;
+          that.save();
+        },
+
+        function fail() {
+          that.def.reject();
+        }
+
+      );
     }
   };
 

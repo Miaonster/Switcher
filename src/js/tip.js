@@ -63,13 +63,15 @@ define(function(require, exports) {
 
       this.$cancel.on('click', function() {
         _this.hide();
+        _this.fail();
       });
     },
 
-    drop: function(done) {
+    drop: function(done, fail) {
       this.show();
       this.$password.focus();
       this.done = done;
+      this.fail = fail || function() {};
     },
 
     rise: function() {
