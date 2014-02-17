@@ -11,12 +11,10 @@ var fs = require('fs'),
     e;
 
 define(function(require) {
-
   var shortcut,
       $doc = $(document);
 
   function initDom() {
-
     $doc.on('dblclick', '.js-custom a', function(e) {
       var index = $(this).parent().prevAll('li').length;
       view.active(index);
@@ -59,14 +57,14 @@ define(function(require) {
     source = require('./source');
     setting = require('./setting');
     rename = require('./rename');
-    tray = require('./tray');
+    //tray = require('./tray');
 
     rename.init(jQuery);
 
     hosts.init();
     view.init(hosts.hosts);
     setting.init();
-    tray.init();
+    //tray.init();
   }
 
   e = $({});

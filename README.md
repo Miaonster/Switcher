@@ -1,11 +1,18 @@
 Switcher
 ========
 
-Host Switcher. Switch your hosts gracefully. Based on node-webkit.
+Switch your hosts gracefully.
+
+### Introduction
+
+Switcher is based on node-webkit, aiming to change hosts between different host profiles. Switcher need root password on Mac and administrator permissions on Windows. I won't collect your privile
 
 ### Download
 
-* MacOSX v1.0.1 [百度云盘](http://pan.baidu.com/s/1i3A2JHV) [Dropbox](https://www.dropbox.com/s/hslibjfrfs9vqv5/Switcher.1.0.1.zip)
+Current Version **v1.0.2**
+
+* Mac [百度云盘](http://pan.baidu.com/s/1o615SPc) [Dropbox](https://www.dropbox.com/s/w250e7jlslvlxsg/Switcher.1.0.2-mac.zip)
+* Window [百度云盘](http://pan.baidu.com/s/11ovCy) [Dropbox](https://www.dropbox.com/s/5f95o4hpx921ft4/Switcher.1.0.2-win.zip)
 
 ### Shortcuts
 
@@ -15,9 +22,9 @@ Host Switcher. Switch your hosts gracefully. Based on node-webkit.
 
 * <kbd>⌘</kbd><kbd>Shift</kbd><kbd>Tab</kbd> Prev Profile
 
-* <kbd>⌘</kbd><kbd>N</kbd> Save Current Profile
+* <kbd>⌘</kbd><kbd>S</kbd> Save Current Profile
 
-* <kbd>⌘</kbd><kbd>S</kbd> New Profile
+* <kbd>⌘</kbd><kbd>N</kbd> New Profile
 
 ### Screenshot
 
