@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    nwpkg: grunt.file.readJSON('src/package.json'),
+
     jshint: {
       options: { // example directives
         curly: true,
@@ -64,6 +66,21 @@ module.exports = function(grunt) {
       src: ['./src/**/*']
     },
 
+    zip: {
+      mac: {
+        cwd: 'webkitbuilds/releases/Switcher/mac/',
+        src: ['webkitbuilds/releases/Switcher/mac/Switcher.app/**/*'],
+        dest: 'build/<%= nwpkg.name %>-<%= nwpkg.version %>-mac.zip',
+        compression: 'DEFLATE',
+      },
+      win: {
+        cwd: 'webkitbuilds/releases/Switcher/win/',
+        src: ['webkitbuilds/releases/Switcher/win/Switcher/**/*'],
+        dest: 'build/<%= nwpkg.name %>-<%= nwpkg.version %>-win.zip',
+        compression: 'DEFLATE',
+      }
+    }
+
     //copy: {
     //  main: {
     //    files: [
@@ -86,6 +103,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-node-webkit-builder');
+  grunt.loadNpmTasks('grunt-zip');
 
   grunt.registerTask('build', ['less:main']);
 };

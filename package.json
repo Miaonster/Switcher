@@ -6,5 +6,8 @@
     "grunt-contrib-copy": "~0.4.1",
     "grunt-contrib-jshint": "~0.7.1",
     "grunt-node-webkit-builder": "~0.1.16"
+  },
+  "dependencies": {
+    "grunt-zip": "~0.12.0"
   }
 }
