@@ -46,6 +46,71 @@ define(function(require) {
       $(id).find('.CodeMirror').get(0).CodeMirror.refresh();
     });
 
+    $doc.on('dragstart', '#js-list li.js-switcher-nav', function(e) {
+      var $this = $(this);
+
+      setTimeout(function() {
+        $this
+          .addClass('draggable-dragging')
+          .hide()
+          .next('.draggable-placeholder')
+            .hide()
+            .css('height', '39')
+            .show();
+
+        setTimeout(function() {
+          $('.draggable-placeholder').css('transition', 'all .1s ease-in');
+        }, 0);
+      }, 0);
+    });
+
+    $doc.on('dragend', '#js-list li', function(e) {
+      $('.draggable-placeholder').css({
+        height: 0,
+        transition: 'none'
+      });
+
+      $('.draggable-dragging')
+        .removeClass('draggable-dragging')
+        .show();
+
+      $('.draggable-over-this').removeClass('draggable-over-this');
+    });
+
+    $doc.on('dragenter', '#js-list li.js-switcher-nav', function(e) {
+      $('.draggable-placeholder')
+        .css('height', '0')
+        .removeClass('draggable-over-this');
+
+      $(this).next('.draggable-placeholder')
+        .css('height', '39')
+        .addClass('draggable-over-this');
+    });
+
+    $doc.on('dragenter dragover', '#js-list li', function(e) {
+      e.preventDefault();
+    });
+
+    $doc.on('drop', '#js-list li.js-switcher-nav', function(e) {
+      e.preventDefault();
+      $(this).next('.draggable-placeholder').trigger('drop');
+    });
+
+    $doc.on('drop', '#js-list li.draggable-placeholder', function(e) {
+      var $placeholders = $('.draggable-placeholder'),
+          $placeholder = $placeholders.filter('.draggable-over-this'),
+          index = $placeholders.index($placeholder);
+
+      if (index != -1) {
+        var dragging = $('.draggable-dragging'),
+            draggingPlaceholder = $('.draggable-dragging + .draggable-placeholder'),
+            draggingIndex = $placeholders.index(draggingPlaceholder);
+
+        dragging.add(draggingPlaceholder).insertAfter($placeholder);
+
+        hosts.reorder(draggingIndex, index);
+      }
+    });
   }
 
   function initModules() {

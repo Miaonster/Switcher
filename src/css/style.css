@@ -147,12 +147,14 @@
 .switcher-list .switcher-list-items > li.using > a {
   color: #ff7f66;
   font-weight: 700;
+}
+.switcher-list .switcher-list-items > li > a {
   background-color: transparent;
 }
-.switcher-list .switcher-list-items > li.using > a:hover {
+.switcher-list .switcher-list-items > li > a:hover {
   background-color: transparent;
 }
-.switcher-list .switcher-list-items > li.using:hover {
+.switcher-list .switcher-list-items > li:hover {
   background-color: #fefefe !important;
 }
 .switcher-list .switcher-list-items > li.divider {

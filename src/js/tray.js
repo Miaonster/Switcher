@@ -3,6 +3,10 @@ var fs = require('fs'),
 
 define(function(require) {
 
+  function menuClickHandler() {
+    //hosts
+  }
+
   return {
     tray: null,
 
@@ -42,12 +46,18 @@ define(function(require) {
       }
 
       hosts.hosts.forEach(function(host) {
-        var conf = {
+        var item,
+            conf = {
               label: host.name,
-              type: 'checkbox',
+              type: host.custom ? 'checkbox' : 'normal',
               checked: !!host.using
             };
-        menu.append(new gui.MenuItem(conf));
+
+        item = new gui.MenuItem(conf);
+        item.click = menuClickHandler;
+        item.uid = host.id;
+
+        menu.append(item);
       });
     }
   };

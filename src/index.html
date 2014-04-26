@@ -11,13 +11,14 @@
 
   <div class="wrap">
     <div class="switcher-list">
-      <ul id="js-list" class="nav nav-stacked switcher-list-items">
+      <ul id="js-list" class="nav nav-stacked switcher-list-items sortable">
         <script type="text/template" id="js-tpl-list" style="display: none;">
-          <li class="js-switcher-nav"><a data-toggle="tab" href="#js-content-<%=id%>" draggable=false>
+          <li draggable=true class="js-switcher-nav"><a data-toggle="tab" href="#js-content-<%=id%>" draggable=false>
             <span class="change pull-right glyphicon glyphicon-asterisk"></span>
             <%=hostname%>
             <span class="status glyphicon glyphicon-chevron-right pull-right"></span>
           </a></li>
+          <li draggable=false class="draggable-placeholder"></li>
         </script>
       </ul>
       <ul class="nav functions">
@@ -58,6 +59,7 @@
   <script src="./lib/codemirror/mode/hosts/hosts.js"></script>
   <script src="./lib/mousetrap/mousetrap.js"></script>
   <script src="./lib/mousetrap/mousetrap-global-bind.js"></script>
+  <!--<script src="./lib/html5sortable/jquery.sortable.js"></script>-->
 
   <script>
     seajs.use('./js/main.js');

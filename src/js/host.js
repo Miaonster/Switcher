@@ -321,6 +321,15 @@ define(function(require) {
         }
 
       );
+    },
+
+    reorder: function(from, to) {
+      console.log(from, to);
+      var tmp = this.hosts[from];
+      this.hosts[from] = this.hosts[to];
+      this.hosts[to] = tmp;
+
+      this.set();
     }
   };
 
