@@ -11,8 +11,8 @@ Switcher is based on node-webkit, aiming to change hosts between different host 
 
 Current version is **v1.0.2**
 
-* Mac [百度云盘](http://pan.baidu.com/s/1o615SPc) [Dropbox](https://www.dropbox.com/s/w250e7jlslvlxsg/Switcher.1.0.2-mac.zip)
-* Window [百度云盘](http://pan.baidu.com/s/11ovCy) [Dropbox](https://www.dropbox.com/s/5f95o4hpx921ft4/Switcher.1.0.2-win.zip)
+* MacOSX [百度云盘](http://pan.baidu.com/s/1o615SPc) [Dropbox](https://www.dropbox.com/s/w250e7jlslvlxsg/Switcher.1.0.2-mac.zip)
+* Windows [百度云盘](http://pan.baidu.com/s/11ovCy) [Dropbox](https://www.dropbox.com/s/5f95o4hpx921ft4/Switcher.1.0.2-win.zip)
 
 ### Shortcuts
 
