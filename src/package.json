@@ -3,7 +3,7 @@
   "name": "Switcher",
   "author": "witcher42",
   "description": "Host switcher based on node-webkit.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "keywords": [
     "Host Switcher",
     "node-webkit"

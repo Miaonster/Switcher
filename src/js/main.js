@@ -29,7 +29,7 @@ define(function(require) {
     });
 
     $doc.on('click', '.js-del', function(e) {
-      var $item = $('.active'),
+      var $item = $('.js-switcher-nav.active'),
           index = $item.prevAll('li.js-switcher-nav:not(#js-list-hosts)').length;
 
       if (index < 2) { return false; }
@@ -93,6 +93,10 @@ define(function(require) {
     });
 
     $doc.on('dragenter', '#js-list li.js-switcher-nav', function(e) {
+      if ($(this).data('draggable-stable')) {
+        return false;
+      }
+
       $('.draggable-placeholder')
         .css('height', '0')
         .removeClass('draggable-over-this');

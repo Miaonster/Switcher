@@ -73,6 +73,11 @@ define(function(require) {
 
       if (element.custom) {
         $item.addClass('js-custom');
+        $item.attr('draggable', true);
+      }
+
+      if (element.readOnly) {
+        $item.data('draggable-stable', true);
       }
 
       if (element.using) {
