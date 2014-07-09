@@ -16,15 +16,16 @@ Current Version **v1.0.2**
 
 ### Shortcuts
 
-* <kbd>⌘</kbd><kbd>1</kbd> Choose First Profile
+* ⌘S Save Current Profile
 
-* <kbd>⌘</kbd><kbd>Tab</kbd> Next Profile
+* ⌘N New Profile
 
-* <kbd>⌘</kbd><kbd>Shift</kbd><kbd>Tab</kbd> Prev Profile
+* ⌘1 Choose First Profile
 
-* <kbd>⌘</kbd><kbd>S</kbd> Save Current Profile
+* ⌃➞ Next Profile
 
-* <kbd>⌘</kbd><kbd>N</kbd> New Profile
+* ⌃⇧➞ Prev Profile
+
 
 ### Screenshot
 

@@ -153,7 +153,7 @@ define(function(require) {
       });
 
       /**
-       * Bind Command+1
+       * Bind Command+Numbers
        */
 
       [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(element) {
@@ -165,10 +165,10 @@ define(function(require) {
       });
 
       /**
-       * Bind Command+Tab & Command+C+Tab
+       * Bind Ctrl+Tab & Ctrl+Shift+Tab
        */
       Mousetrap.bindGlobal('ctrl+tab', function() {
-        var $one = $('.js-switcher-nav.active').next('.js-switcher-nav');
+        var $one = $('.js-switcher-nav.active').nextAll('.js-switcher-nav:first');
 
         if (!$one.length) {
           $one = $('.js-switcher-nav:first');
@@ -178,7 +178,7 @@ define(function(require) {
       });
 
       Mousetrap.bindGlobal('ctrl+shift+tab', function() {
-        var $one = $('.js-switcher-nav.active').prev('.js-switcher-nav');
+        var $one = $('.js-switcher-nav.active').prevAll('.js-switcher-nav:first');
 
         if (!$one.length) {
           $one = $('.js-switcher-nav:last');
