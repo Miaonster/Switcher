@@ -1,9 +1,7 @@
 Switcher
 ========
 
-Switch your hosts gracefully.
-
-### Introduction
+*Switch your hosts gracefully.*
 
 Switcher is based on node-webkit, aiming to change hosts between different host profiles. Switcher need root password on Mac and administrator permissions on Windows. I won't collect your information.
 
