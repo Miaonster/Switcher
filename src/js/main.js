@@ -42,7 +42,11 @@ define(function(require) {
     });
 
     $doc.on('click', '.js-edit', function(e) {
-        var $this = $('.js-switcher-nav.active');
+        var $this = $('.js-switcher-nav.active.js-custom');
+
+        if (!$this.length) {
+            return false;
+        }
 
         $this.find('a .js-hostname').rename({
             stop: function () {
