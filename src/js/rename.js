@@ -3,7 +3,6 @@ define(function(require, exports) {
   exports.init = function($) {
 
       $.fn.rename = function(options) {
-
         var $this = this;
 
         function startRename() {
@@ -44,7 +43,6 @@ define(function(require, exports) {
         this.on('keydown', keydownCallback);
 
         return this;
-
       }
 
   };

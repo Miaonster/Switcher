@@ -41,11 +41,11 @@ define(function(require) {
 
     use: function(index) {
       $('.using').removeClass('using');
-      $('.js-custom').eq(index).addClass('using');
+      $('.js-switcher-nav.js-custom').eq(index).addClass('using');
     },
 
     active: function(index) {
-      $('#js-list > li').eq(index).find('a').tab('show');
+      $('#js-list > li.js-switcher-nav').eq(index).find('a').tab('show');
     },
 
     choose: function() {

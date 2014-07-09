@@ -209,7 +209,7 @@ define(function(require) {
       _this.hosts.push(element);
       _this.set();
 
-      $('.js-custom').last().children('a').rename({
+      $('.js-custom:has(a)').last().find('a .js-hostname').rename({
         stop: function() {
           var index = _this.hosts.length - 1;
           _this.change(index, 'name', this.text().trim());
@@ -326,8 +326,12 @@ define(function(require) {
     reorder: function(from, to) {
       console.log(from, to);
       var tmp = this.hosts[from];
-      this.hosts[from] = this.hosts[to];
-      this.hosts[to] = tmp;
+
+      this.hosts.splice(from, 1);
+      this.hosts.splice(to, 0, tmp);
+
+      //this.hosts[from] = this.hosts[to];
+      //this.hosts[to] = tmp;
 
       this.set();
     }

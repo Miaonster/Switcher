@@ -24,11 +24,6 @@
       > a {
         color: #ff7f66;
         font-weight: 700;
-      }
-    }
-
-    > li {
-      > a {
         background-color: transparent;
         &:hover {
           background-color: transparent;
@@ -47,11 +42,26 @@
       background-color: #e5e5e5;
     }
 
+    .hostname {
+        float: left;
+        line-height: 19px;
+        max-width: 155px;
+        display: inline-block;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        padding-bottom: 2px;
+    }
+
+    /*
+    > li.switcher-nav {
+      height: 40px;
+    }
+    */
+
     > li {
       line-height: 19px;
       margin-top: 0;
       font-family: 'open sans';
-      vertical-align: baseline;
 
       &.active {
         border-right: 0;
@@ -91,7 +101,7 @@
 
       //.change,
       .status {
-        top: 2px;
+        top: 3px;
         display: none;
       }
 
@@ -151,6 +161,10 @@
         background-position: -85px 0;
       }
     }
+  }
+
+  .nav-disable {
+    color: #ccc;
   }
 }
 

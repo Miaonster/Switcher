@@ -16,7 +16,7 @@ define(function(require) {
 
   function initDom() {
     $doc.on('dblclick', '.js-custom a', function(e) {
-      var index = $(this).parent().prevAll('li').length;
+      var index = $(this).parent().prevAll('li.js-switcher-nav').length;
       view.active(index);
       view.use(index - 2);
       hosts.active(index);
@@ -30,7 +30,7 @@ define(function(require) {
 
     $doc.on('click', '.js-del', function(e) {
       var $item = $('.active'),
-          index = $item.prevAll('li:not(#js-list-hosts)').length;
+          index = $item.prevAll('li.js-switcher-nav:not(#js-list-hosts)').length;
 
       if (index < 2) { return false; }
 
@@ -39,6 +39,21 @@ define(function(require) {
       hosts.del(index);
       hosts.active(index - 1);
       view.active(index - 1);
+    });
+
+    $doc.on('click', '.js-edit', function(e) {
+        var $this = $('.js-switcher-nav.active');
+
+        $this.find('a .js-hostname').rename({
+            stop: function () {
+              var index = $this.prevAll('li.js-switcher-nav').length;
+              hosts.change(index, 'name', this.text().trim());
+              hosts.active(index);
+              hosts.use(index);
+              view.active(index);
+              view.use(index - 2);
+            }
+        });
     });
 
     $doc.on('shown.bs.tab', '[data-toggle=tab]', function (e) {
@@ -99,16 +114,21 @@ define(function(require) {
     $doc.on('drop', '#js-list li.draggable-placeholder', function(e) {
       var $placeholders = $('.draggable-placeholder'),
           $placeholder = $placeholders.filter('.draggable-over-this'),
-          index = $placeholders.index($placeholder);
+          toIndex = $placeholders.index($placeholder);
 
-      if (index != -1) {
+      if (toIndex >= 0) {
         var dragging = $('.draggable-dragging'),
             draggingPlaceholder = $('.draggable-dragging + .draggable-placeholder'),
-            draggingIndex = $placeholders.index(draggingPlaceholder);
+            fromIndex = $placeholders.index(draggingPlaceholder);
+
+        if (fromIndex > toIndex) {
+            toIndex += 1;
+        } else if (fromIndex < toIndex) {
+        }
 
         dragging.add(draggingPlaceholder).insertAfter($placeholder);
 
-        hosts.reorder(draggingIndex, index);
+        hosts.reorder(fromIndex, toIndex);
       }
     });
   }

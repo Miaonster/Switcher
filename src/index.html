@@ -13,19 +13,22 @@
     <div class="switcher-list">
       <ul id="js-list" class="nav nav-stacked switcher-list-items sortable">
         <script type="text/template" id="js-tpl-list" style="display: none;">
-          <li draggable=true class="js-switcher-nav"><a data-toggle="tab" href="#js-content-<%=id%>" draggable=false>
-            <span class="change pull-right glyphicon glyphicon-asterisk"></span>
-            <%=hostname%>
-            <span class="status glyphicon glyphicon-chevron-right pull-right"></span>
-          </a></li>
+          <li draggable=true class="js-switcher-nav switcher-nav">
+            <a data-toggle="tab" href="#js-content-<%=id%>" draggable=false class="clearfix">
+              <span class="change pull-right glyphicon glyphicon-asterisk"></span>
+              <span class="js-hostname hostname"><%=hostname%></span>
+              <span class="status glyphicon glyphicon-chevron-right pull-right"></span>
+            </a>
+          </li>
           <li draggable=false class="draggable-placeholder"></li>
         </script>
       </ul>
       <ul class="nav functions">
         <li class="js-add"><span class="glyphicon glyphicon-plus"></span></li>
         <li class="js-del"><span class="glyphicon glyphicon-minus"></span></li>
-        <li><span class="js-refresh glyphicon glyphicon-refresh"></span></li>
-        <li><span class="js-setting glyphicon glyphicon-th-list"></span></li>
+        <li class="js-edit"><span class="glyphicon glyphicon-pencil"></span></li>
+        <li class="nav-disable"><span class="js-refresh glyphicon glyphicon-refresh"></span></li>
+        <li class="nav-disable"><span class="js-setting glyphicon glyphicon-th-list"></span></li>
       </ul>
     </div>
     <div class="tab-content">
@@ -59,7 +62,6 @@
   <script src="./lib/codemirror/mode/hosts/hosts.js"></script>
   <script src="./lib/mousetrap/mousetrap.js"></script>
   <script src="./lib/mousetrap/mousetrap-global-bind.js"></script>
-  <!--<script src="./lib/html5sortable/jquery.sortable.js"></script>-->
 
   <script>
     seajs.use('./js/main.js');
