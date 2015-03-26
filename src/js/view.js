@@ -155,11 +155,10 @@ define(function(require) {
       /**
        * Bind Command+Numbers
        */
-
-      [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(element) {
+      [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function(element) {
         Mousetrap.bindGlobal(leader + element, (function(element) {
           return function() {
-            $('.js-switcher-nav:nth-child(' + (element) + ')').find('a').tab('show');
+            $('.js-switcher-nav').eq(element).find('a').tab('show');
           };
         })(element));
       });
