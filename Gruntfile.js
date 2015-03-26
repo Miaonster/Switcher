@@ -54,7 +54,7 @@ module.exports = function(grunt) {
     nodewebkit: {
       options: {
         app_name: 'Switcher',
-        app_version: '1.0.3',
+        app_version: '1.0.4',
         build_dir: './webkitbuilds',
         mac: true,
         mac_icns: 'asset/app.icns',

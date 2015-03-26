@@ -10,6 +10,7 @@ var fs = require('fs'),
     tray,
     e;
 
+
 define(function(require) {
   var shortcut,
       $doc = $(document);
@@ -160,8 +161,15 @@ define(function(require) {
     //tray.init();
   }
 
+  function initMenu() {
+      var mb = new gui.Menu({ type:"menubar" });
+      mb.createMacBuiltin("Switcher");
+      gui.Window.get().menu = mb;
+  }
+
   e = $({});
 
+  initMenu();
   initDom();
   initModules();
 

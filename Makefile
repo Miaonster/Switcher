@@ -1,5 +1,5 @@
-SHELL:=/bin/zsh
-VERSION:=1.0.1
+SHELL:=/bin/sh
+VERSION:=1.0.4
 
 NAME=Switcher
 
